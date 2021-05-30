@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("const test = document.querySelector('#test');\n\nconst test1 = document.createElement('div');\ntest1.id = 'test1';\ntest.appendChild(test1);\n\nconsole.log(test1);\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 
