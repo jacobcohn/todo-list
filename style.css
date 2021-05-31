@@ -19,6 +19,8 @@ button {
     min-height: 100vh;
 }
 
+/* HEADER SECTION */
+
 #headerSection {
     background: #004A8F;
     color: #ECEBF3;
@@ -35,6 +37,8 @@ button {
     font-size: 50px;
     margin: 25px 0px auto 50px;
 }
+
+/* PROJECT SECTION */
 
 #projectSection {
     background: #70CBFF;
@@ -71,25 +75,113 @@ button {
 }
 
 .projectIcon {
-    color: rgba(18, 31, 43, 0.3);
+    color: rgba(227, 100, 113, 0.4);
     font-size: 20px;
     padding: 18px;
     grid-area: 1 / 2 / 2 / 3;
 }
 
 .projectIcon:hover {
-    color: rgba(18, 31, 43, 0.9);
+    color: rgba(227, 100, 113, 0.9);
+}
+
+#homeProjectDiv {
+    margin: 10px 0px 30px 0px;
 }
 
 #homeProjectBtn {
     grid-area: 1 / 1 / 2 / 3;
 }
 
+#addProjectDiv {
+    background: #70CBFF;
+    color: #121F2B;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0px 10px 0px;
+    border: none;
+    display: default;
+}
+
+#addProjectBtn {
+    background: transparent;
+    font-size: 22px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+#addProjectBtn:hover {
+    background: rgba(0, 74, 143, 0.1);
+}
+
+#addProjectFormDiv {
+    background: #70CBFF;
+    color: #121F2B;
+    width: 100%;
+    height: 100px;
+    margin: 20px 0px 10px 0px;
+    border: none;
+    display: none;
+}
+
+#addProjectForm {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.addProjectFormElement {
+    font-size: 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+#addProjectInput {
+    color: #121F2B;
+    background: white;
+    padding-left: 10px;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#addProjectInput:focus {
+    outline: none;
+}
+
+#addProjectAddBtn {
+    color: white;
+    background: rgba(51, 91, 65, 0.6);
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#addProjectAddBtn:hover {
+    background: rgba(51, 91, 65, 0.8);
+}
+
+#addProjectCancelBtn {
+    color: white;
+    background: rgba(227, 100, 113, 0.7);
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#addProjectCancelBtn:hover {
+    background: rgba(227, 100, 113, 0.9);
+}
+
+/* TASK SECTION */
+
 #taskSection {
     background: #ECEBF3;
     color: #182A3A;
     grid-area: 2 / 2 / 3 / 3;
+    
 }
+
+/* FOOTER SECTION */
 
 #footerSection {
     background: #004A8F;
@@ -114,4 +206,18 @@ a {
     color: #ECEBF3;
     font-size: 18px;
     margin: 6px auto 0px 4px;
+}
+
+/* MODAL SECTION */
+
+#modalBackground {
+    background-color: rgba(0, 74, 143, 0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }

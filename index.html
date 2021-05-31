@@ -10,15 +10,41 @@
     <div id='container'>
         <div id='headerSection'>
             <i id='headerIcon' class="fas fa-list-ul"></i>
-            <h1 id='headerTitle'>Todo List</h1>
+            <h1 id='headerTitle'>ToDo List</h1>
         </div>
         <div id='projectSection'>
             <div id='homeProjectDiv' class='projectDiv'>
-                <button id='homeProjectBtn' class="projectBtn">Home</button>
+                <button id='homeProjectBtn' class="projectBtn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </button>
             </div>
-            <div class='projectDiv'>
-                <button class="projectBtn">Example</button>
-                <i class="fas fa-trash projectIcon"></i>
+            <div id='allProjectsContainer'>
+                <div class='projectDiv'>
+                    <button class="projectBtn">Other</button>
+                    <i class="fas fa-trash projectIcon"></i>
+                </div>
+                <div class='projectDiv'>
+                    <button class="projectBtn">ACT</button>
+                    <i class="fas fa-trash projectIcon"></i>
+                </div>
+                <div class='projectDiv'>
+                    <button class="projectBtn">Coding</button>
+                    <i class="fas fa-trash projectIcon"></i>
+                </div>
+            </div>
+            <div id='addProjectDiv'>
+                <button id='addProjectBtn'>
+                    <i class="fas fa-plus"></i>
+                    Add Project
+                </button>
+            </div>
+            <div id='addProjectFormDiv'>
+                <form id='addProjectForm'>
+                    <input type='text' id='addProjectInput' name='projectName' placeholder="Project Name" class='addProjectFormElement'>
+                    <button type='submit' id='addProjectAddBtn' class='addProjectFormElement'>Add</button>
+                    <button id='addProjectCancelBtn' class='addProjectFormElement'>Cancel</button>
+                </form>
             </div>
         </div>
         <div id='taskSection'>
@@ -32,6 +58,10 @@
                 <i id='footerIcon' class="fab fa-github"></i>
             </a>
         </div>
+    </div>
+
+    <div id='modalBackground'>
+        
     </div>
 
     <script src='main.js'></script>
