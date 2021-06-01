@@ -20,12 +20,7 @@
                     Home
                 </button>
             </div>
-            <div id='allProjectsContainer'>
-                <!-- <div class='projectDiv'>
-                    <button class="projectBtn">Other</button>
-                    <i class="fas fa-trash projectDeleteIcon"></i>
-                </div> -->
-            </div>
+            <div id='allProjectsContainer'></div>
             <div id='addProjectBtnDiv' class="displayDefault">
                 <button id='addProjectBtn'>
                     <i class="fas fa-plus"></i>
@@ -53,8 +48,11 @@
         </div>
     </div>
 
-    <div id='modalBackground'>
-        
+    <div id='modalBackground' class='displayNone'>
+        <div id='modalContent'>
+            <h1 id='modalMessage'></h1>
+            <button id='modalBtn'>Close</button>
+        </div>
     </div>
 </body>
 </html>

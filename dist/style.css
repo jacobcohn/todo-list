@@ -23,6 +23,10 @@ button {
     display: default;
 }
 
+.displayFlex {
+    display: flex;
+}
+
 .displayNone {
     display: none;
 }
@@ -231,7 +235,36 @@ a {
     position: fixed; 
     left: 0;
     top: 0;
-    display: none;
     justify-content: center;
     align-items: center;
+}
+
+#modalContent {
+    background: #ECEBF3;
+    min-width: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#modalMessage {
+    color: #121F2B;
+    font-size: 40px;
+}
+
+#modalBtn {
+    color:#ECEBF3;
+    background: rgba(227, 100, 113, 0.7);
+    font-size: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    align-self: baseline;
+}
+
+#modalBtn:hover {
+    background: rgba(227, 100, 113, 0.9);
 }

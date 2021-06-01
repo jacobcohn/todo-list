@@ -18,11 +18,19 @@ const dom = (() => {
         projects.fixAddProjectInput();
     };
 
+    const displayError = (message) => {
+        modal.showErrorMessage(message);
+    }
+
+    const closeModal = () => {
+        modal.switchModalOnOrOff();
+    }
+
     const deleteProject = (projectName) => {
         projects.removeProjectFromDisplay(projectName);
     };
 
-    return {initiate, addProject, cancelAddProject, submitNewProject, deleteProject};
+    return {initiate, addProject, cancelAddProject, submitNewProject, displayError, closeModal, deleteProject};
 })();
 
 const projects = (() => {
@@ -94,12 +102,21 @@ const tasks = (() => {
     return {};
 })();
 
-const displayError = (() => {
-    const errorMessage = (message) => {
-        console.log(message);
+const modal = (() => {
+    const modalMessage = document.getElementById('modalMessage');
+    const modalBackground = document.getElementById('modalBackground');
+
+    const showErrorMessage = (message) => {
+        modalMessage.textContent = message;
+        switchModalOnOrOff();
     };
 
-    return {errorMessage}
+    const switchModalOnOrOff = () => {
+        modalBackground.classList.toggle('displayNone');
+        modalBackground.classList.toggle('displayFlex');
+    };
+
+    return {showErrorMessage, switchModalOnOrOff};
 })();
 
-export {dom, displayError}
+export {dom}

@@ -1,4 +1,4 @@
-import {displayError} from './dom'
+import {dom} from './dom'
 
 const errors = (() => {
     const isSubmitProjectError = () => {
@@ -12,13 +12,13 @@ const projects = (() => {
     const checkSubmitProjectInput = () => {
         const inputValue = document.getElementById('addProjectInput').value;
         if (inputValue == '' || inputValue == null) {
-            displayError.errorMessage('Project Name is Required');
+            dom.displayError('Project Name is Required');
             return true;
         };
         const projectsArray = JSON.parse(localStorage.getItem('projects'));
         const projectNamesArray = projectsArray.map(project => project.name);
         if (projectNamesArray.some(projectName => projectName == inputValue)) {  
-            displayError.errorMessage('Two Projects Cannot Have The Same Name')  
+            dom.displayError('Two Projects Cannot Have The Same Name')  
             return true;
         };
         return false;

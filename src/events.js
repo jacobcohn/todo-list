@@ -1,5 +1,5 @@
 import {logic} from './logic'
-import {dom} from './dom'
+import {dom, displayError} from './dom'
 import {errors} from './errors'
 
 /* 
@@ -12,6 +12,7 @@ const events = (() => {
     const initiate = () => {
         initialProjectEvents();
         initialTaskEvents();
+        initialModalEvents();
     };
 
     const initialProjectEvents = () => {
@@ -25,6 +26,10 @@ const events = (() => {
     const initialTaskEvents = () => {
 
     };
+
+    const initialModalEvents = () => {
+        modal.closeModal();
+    }
 
     const submitNewProject = () => {
         projects.addEventListenersToProject();
@@ -95,6 +100,18 @@ const projects = (() => {
 
 const tasks = (() => {
 
+})();
+
+const modal = (() => {
+    const modalBtn = document.getElementById('modalBtn');
+
+    const closeModal = () => {
+        modalBtn.addEventListener('click', () => {
+            dom.closeModal();
+        });
+    };
+
+    return {closeModal};
 })();
 
 export {events}
