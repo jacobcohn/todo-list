@@ -28,8 +28,8 @@ const projects = (() => {
     };
 
     const getInputValue = () => {
-        const inputvalue = document.querySelector('#addProjectInput').value;
-        return inputvalue;
+        const inputValue = document.querySelector('#addProjectInput').value;
+        return inputValue;
     };
 
     const createNewProject = (name) => {

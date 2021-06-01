@@ -1,5 +1,6 @@
 import {logic} from './logic'
 import {dom} from './dom'
+import {errors} from './errors'
 
 /* 
 things that I need to do:
@@ -76,6 +77,7 @@ const projects = (() => {
         const submitNewProjectBtn = document.querySelector('#submitNewProjectBtn');
         submitNewProjectBtn.addEventListener('click', e => {
             e.preventDefault();
+            if (errors.isSubmitProjectError()) return;
             logic.submitNewProject();
             dom.submitNewProject();
             events.submitNewProject();

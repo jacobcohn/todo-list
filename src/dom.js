@@ -15,6 +15,7 @@ const dom = (() => {
     const submitNewProject = () => {
         projects.switchAddProjectElements();
         projects.displayNewProject();
+        projects.fixAddProjectInput();
     };
 
     const deleteProject = (projectName) => {
@@ -79,7 +80,12 @@ const projects = (() => {
         projectDiv.remove();
     };
 
-    return {switchAddProjectElements, displayNewProject, displayAllProjects, removeProjectFromDisplay};
+    const fixAddProjectInput = () => {
+        const addProjectInput = document.getElementById('addProjectInput');
+        addProjectInput.value = '';
+    };
+
+    return {switchAddProjectElements, displayNewProject, displayAllProjects, removeProjectFromDisplay, fixAddProjectInput};
 })();
 
 const tasks = (() => {
@@ -88,4 +94,12 @@ const tasks = (() => {
     return {};
 })();
 
-export {dom}
+const displayError = (() => {
+    const errorMessage = (message) => {
+        console.log(message);
+    };
+
+    return {errorMessage}
+})();
+
+export {dom, displayError}
