@@ -199,6 +199,83 @@ button {
     margin: 0px 0px 30px 0px;
 }
 
+#addTaskBtn {
+    background: transparent;
+    font-size: 22px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0px 10px 0px;
+    margin: 30px 0px 10px 0px;
+    border: none;
+    border-radius: 5px;
+}
+
+#addTaskBtn:hover {
+    background: rgba(0, 74, 143, 0.1);
+}
+
+.taskDiv {
+    color: #121F2B;
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+    margin: 5px 0px 5px 0px;
+    border: 1px solid;
+    border-radius: 0px 5px 5px 0px;
+    display: grid;
+    grid-template-columns: 10px 30px 1fr 100px 30px 30px;
+    align-items: center;
+}
+
+.taskDiv:hover {
+    background: rgba(0, 74, 143, 0.1);
+}
+
+.taskPriority {
+    background: rgba(51, 91, 65, 0.8);
+    height: 100%;
+    width: 5px;
+    justify-self: flex-start;
+}
+
+.taskStatus {
+    height: 20px;
+    width: 20px;
+    border: 1px solid;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.taskStatusIcon {
+    font-size: 15px; /* status: completed */
+}
+
+.taskName {
+    text-decoration: line-through; /* status: completed */
+}
+
+.taskDueDate {
+    text-decoration: line-through; /* status: completed */
+}
+
+.taskEditIcon {
+    color: rgba(51, 91, 65, 0.4);
+}
+
+.taskEditIcon:hover {
+    color: rgba(51, 91, 65, 0.8);
+}
+
+.taskDeleteIcon {
+    color: rgba(227, 100, 113, 0.4);
+}
+
+.taskDeleteIcon:hover {
+    color: rgba(227, 100, 113, 0.9);
+}
+
 /* FOOTER SECTION */
 
 #footerSection {
