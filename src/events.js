@@ -52,9 +52,9 @@ const projects = (() => {
 
     const deleteProjectEventListener = (projectDeleteIcon) => {
         projectDeleteIcon.addEventListener('click', e => {
-            const projectName = e.target.id.split(' ')[0];
+            const projectName = e.target.id.replace(' projectDeleteIcon', '');
             logic.deleteProject(projectName);
-            // dom.deleteProject(projectName);
+            dom.deleteProject(projectName);
         });
     };
 

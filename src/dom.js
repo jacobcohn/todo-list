@@ -1,7 +1,7 @@
 const dom = (() => {
     const initiate = () => {
         // display home and all of its tasks
-        // display all projects on sidebar
+        projects.displayAllProjects();
     };
 
     const addProject = () => {
@@ -17,7 +17,11 @@ const dom = (() => {
         projects.displayNewProject();
     };
 
-    return {initiate, addProject, cancelAddProject, submitNewProject};
+    const deleteProject = (projectName) => {
+        projects.removeProjectFromDisplay(projectName);
+    };
+
+    return {initiate, addProject, cancelAddProject, submitNewProject, deleteProject};
 })();
 
 const projects = (() => {
@@ -30,34 +34,52 @@ const projects = (() => {
         addProjectFormDiv.classList.toggle('displayNone');
     };
 
-    const displayNewProject = () => {
-        const projectsArray = JSON.parse(localStorage.getItem('projects'));
-        const newProjectName = projectsArray[projectsArray.length - 1].name;
+    const displayAProject = (projectName) => {
         const allProjectsContainer = document.querySelector('#allProjectsContainer');
 
         // create projectDiv
-        const newProjectDiv = document.createElement('div');
-        newProjectDiv.id = newProjectName + ' projectDiv';
-        newProjectDiv.classList.toggle('projectDiv');
-        allProjectsContainer.appendChild(newProjectDiv);
+        const projectDiv = document.createElement('div');
+        projectDiv.id = projectName + ' projectDiv';
+        projectDiv.classList.toggle('projectDiv');
+        allProjectsContainer.appendChild(projectDiv);
 
         // create projectBtn
-        const newProjectBtn = document.createElement('button');
-        newProjectBtn.id = newProjectName + ' projectBtn';
-        newProjectBtn.classList.toggle('projectBtn');
-        newProjectBtn.textContent = newProjectName;
-        newProjectDiv.appendChild(newProjectBtn);
+        const projectBtn = document.createElement('button');
+        projectBtn.id = projectName + ' projectBtn';
+        projectBtn.classList.toggle('projectBtn');
+        projectBtn.textContent = projectName;
+        projectDiv.appendChild(projectBtn);
 
         // create projectDeleteIcon
-        const newProjectDeleteIcon = document.createElement('i');
-        newProjectDeleteIcon.id = newProjectName + ' projectDeleteIcon';
-        newProjectDeleteIcon.classList.toggle('fas');
-        newProjectDeleteIcon.classList.toggle('fa-trash');
-        newProjectDeleteIcon.classList.toggle('projectDeleteIcon');
-        newProjectDiv.appendChild(newProjectDeleteIcon);
+        const projectDeleteIcon = document.createElement('i');
+        projectDeleteIcon.id = projectName + ' projectDeleteIcon';
+        projectDeleteIcon.classList.toggle('fas');
+        projectDeleteIcon.classList.toggle('fa-trash');
+        projectDeleteIcon.classList.toggle('projectDeleteIcon');
+        projectDiv.appendChild(projectDeleteIcon);
     };
 
-    return {switchAddProjectElements, displayNewProject};
+    const displayNewProject = () => {
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        const newProjectName = projectsArray[projectsArray.length - 1].name;
+        displayAProject(newProjectName);
+    };
+
+    const displayAllProjects = () => {
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        const projectNamesArray = projectsArray.map(element => element.name);
+        projectNamesArray.forEach(projectName => {
+            if (projectName == 'Home') return;
+            displayAProject(projectName);
+        });
+    };
+
+    const removeProjectFromDisplay = (projectName) => {
+        const projectDiv = document.getElementById(projectName + ' projectDiv');
+        projectDiv.remove();
+    };
+
+    return {switchAddProjectElements, displayNewProject, displayAllProjects, removeProjectFromDisplay};
 })();
 
 const tasks = (() => {
