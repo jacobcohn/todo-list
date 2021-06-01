@@ -22,33 +22,33 @@
             <div id='allProjectsContainer'>
                 <div class='projectDiv'>
                     <button class="projectBtn">Other</button>
-                    <i class="fas fa-trash projectIcon"></i>
+                    <i class="fas fa-trash projectDeleteIcon"></i>
                 </div>
                 <div class='projectDiv'>
                     <button class="projectBtn">ACT</button>
-                    <i class="fas fa-trash projectIcon"></i>
+                    <i class="fas fa-trash projectDeleteIcon"></i>
                 </div>
                 <div class='projectDiv'>
                     <button class="projectBtn">Coding</button>
-                    <i class="fas fa-trash projectIcon"></i>
+                    <i class="fas fa-trash projectDeleteIcon"></i>
                 </div>
             </div>
-            <div id='addProjectDiv'>
+            <div id='addProjectBtnDiv' class="displayDefault">
                 <button id='addProjectBtn'>
                     <i class="fas fa-plus"></i>
                     Add Project
                 </button>
             </div>
-            <div id='addProjectFormDiv'>
+            <div id='addProjectFormDiv' class='displayNone'>
                 <form id='addProjectForm'>
-                    <input type='text' id='addProjectInput' name='projectName' placeholder="Project Name" class='addProjectFormElement'>
-                    <button type='submit' id='addProjectAddBtn' class='addProjectFormElement'>Add</button>
-                    <button id='addProjectCancelBtn' class='addProjectFormElement'>Cancel</button>
+                    <input type='text' id='addProjectInput' class='addProjectFormElement' name='projectName' placeholder="Project Name" maxlength="12">
+                    <button type='submit' id='submitNewProjectBtn' class='addProjectFormElement'>Add</button>
+                    <button type='button' id='cancelAddProjectBtn' class='addProjectFormElement'>Cancel</button>
                 </form>
             </div>
         </div>
         <div id='taskSection'>
-
+            <h2 id='taskTitle'>Home</h2>
         </div>
         <div id='footerSection'>
             <a href='https://github.com/jcohn16/todo-list'>
