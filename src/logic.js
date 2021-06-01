@@ -1,6 +1,7 @@
 const logic = (() => {
     const initiate = () => {
         projects.checkArray();
+        projects.setSelectedProject('Home');
         tasks.checkArray();
     };
 
@@ -12,7 +13,11 @@ const logic = (() => {
         projects.removeProjectFromArray(projectName);
     };
 
-    return {initiate, submitNewProject, deleteProject};
+    const selectProject = (projectName) => {
+        projects.setSelectedProject(projectName);
+    }
+
+    return {initiate, submitNewProject, deleteProject, selectProject};
 })();
 
 const projects = (() => {
@@ -25,6 +30,10 @@ const projects = (() => {
             }];
         };
         localStorage.setItem('projects', JSON.stringify(projectsArray));
+    };
+
+    const setSelectedProject = (projectName) => {
+        sessionStorage.setItem('selectedProject', projectName);
     };
 
     const getInputValue = () => {
@@ -51,7 +60,8 @@ const projects = (() => {
         localStorage.setItem('projects', JSON.stringify(projectsArray));
     };
 
-    return {checkArray, getInputValue, createNewProject, addProjectToArray, removeProjectFromArray};
+    return {checkArray, setSelectedProject, getInputValue, createNewProject, addProjectToArray, 
+        removeProjectFromArray};
 })();
 
 const tasks = (() => {

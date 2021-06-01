@@ -1,6 +1,6 @@
 const dom = (() => {
     const initiate = () => {
-        // display home and all of its tasks
+        selectProject('Home');
         projects.displayAllProjects();
     };
 
@@ -30,7 +30,13 @@ const dom = (() => {
         projects.removeProjectFromDisplay(projectName);
     };
 
-    return {initiate, addProject, cancelAddProject, submitNewProject, displayError, closeModal, deleteProject};
+    const selectProject = (projectName) => {
+        tasks.changeTitle(projectName);
+        // display all tasks in projectName
+    };
+
+    return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
+        closeModal, deleteProject, selectProject};
 })();
 
 const projects = (() => {
@@ -93,13 +99,17 @@ const projects = (() => {
         addProjectInput.value = '';
     };
 
-    return {switchAddProjectElements, displayNewProject, displayAllProjects, removeProjectFromDisplay, fixAddProjectInput};
+    return {switchAddProjectElements, displayNewProject, displayAllProjects, removeProjectFromDisplay, 
+        fixAddProjectInput};
 })();
 
 const tasks = (() => {
+    const changeTitle = (projectName) => {
+        const taskTitle = document.getElementById('taskTitle');
+        taskTitle.textContent = projectName;
+    };
 
-
-    return {};
+    return {changeTitle};
 })();
 
 const modal = (() => {

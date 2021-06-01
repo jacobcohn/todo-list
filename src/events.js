@@ -4,7 +4,7 @@ import {errors} from './errors'
 
 /* 
 things that I need to do:
-- form validation (not the same name and not nothing)
+- selectProject
 */
 
 
@@ -42,10 +42,15 @@ const projects = (() => {
     const selectProject = () => {
         const allProjects = Array.from(document.querySelectorAll('.projectBtn'));
         allProjects.forEach(element => {
-            element.addEventListener('click', e => {
-                // need to do something here
-                console.log(e.target);
-            });
+            selectProjectEventListener(element);
+        });
+    };
+
+    const selectProjectEventListener = (projectBtn) => {
+        projectBtn.addEventListener('click', e => {
+            const projectName = e.target.id.replace(' projectBtn', '');
+            logic.selectProject(projectName);
+            dom.selectProject(projectName);
         });
     };
 
@@ -90,6 +95,10 @@ const projects = (() => {
     };
 
     const addEventListenersToProject = () => {
+        const allProjectBtns = Array.from(document.querySelectorAll('.projectBtn'));
+        const newProjectBtn = allProjectBtns[allProjectBtns.length - 1];
+        selectProjectEventListener(newProjectBtn);
+
         const allProjectDeleteIcons = Array.from(document.querySelectorAll('.projectDeleteIcon'));
         const newProjectDeleteIcon = allProjectDeleteIcons[allProjectDeleteIcons.length - 1];
         deleteProjectEventListener(newProjectDeleteIcon);
