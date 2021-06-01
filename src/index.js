@@ -5,15 +5,16 @@ const main = (() => {
     const initiate = () => {
         logic.initiate();
         dom.initiate();
+        main.initialEventListeners();
     };
 
-    const eventlisteners = () => {
-        projectEvents();
-        taskEvents();
+    const initialEventListeners = () => {
+        initialProjectEvents();
+        initialTaskEvents();
     };
 
     // projectEvents (helping with navigation)
-    const projectEvents = () => {
+    const initialProjectEvents = () => {
         selectProject();
         deleteProject();
         addProject();
@@ -35,8 +36,9 @@ const main = (() => {
         const allProjectDeleteIcons = Array.from(document.querySelectorAll('.projectDeleteIcon'));
         allProjectDeleteIcons.forEach(element => {
             element.addEventListener('click', e => {
-                // need to do something here
-                console.log(e.target);
+                const projectName = e.target.id.split(' ')[0];
+                logic.deleteProject(projectName);
+                // dom.deleteProject(projectName);
             });
         });
     };
@@ -57,19 +59,20 @@ const main = (() => {
 
     const submitNewProject = () => {
         const submitNewProjectBtn = document.querySelector('#submitNewProjectBtn');
-        submitNewProjectBtn.addEventListener('click', () => {
-            // need to do something here
-            console.log(submitNewProjectBtn);
+        submitNewProjectBtn.addEventListener('click', e => {
+            e.preventDefault();
+            logic.submitNewProject();
+            dom.submitNewProject();
+            // updateEventListeners();
         });
     };
 
     // taskEvents
-    const taskEvents = () => {
+    const initialTaskEvents = () => {
 
     };
 
-    return {initiate, eventlisteners};
+    return {initiate, initialEventListeners};
 })();
 
 main.initiate();
-main.eventlisteners();
