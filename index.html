@@ -89,13 +89,13 @@
     </div>
 
     <div id='addTaskModalBackground' class='modalBackground displayNone'>
-        <div id='addTaskModalContent'>
-            <h1 id='addTaskTitle'>Add Task</h1>
-            <form id='addTaskForm'>
+        <div id='addTaskModalContent' class='taskFormModalContent'>
+            <h1 id='addTaskTitle' class='taskFormTitle'>Add Task</h1>
+            <form id='addTaskForm' class='taskForm'>
                 <label id='addTaskNameLabel' for='addTaskName'>Name:</label>
                 <input type='text' id='addTaskNameInput' name='addTaskName' class='taskFormInputElement' required>
                 <label id='addTaskNotesLabel' for='addTaskNotes'>Notes:</label>
-                <textarea type='textarea' id='addTaskNotesTextArea' name='addTaskNotes' class='taskFormInputElement'></textarea>
+                <textarea type='textarea' id='addTaskNotesTextArea' name='addTaskNotes' class='taskFormInputElement taskFormNotesTextArea'></textarea>
                 <label id='addTaskPriorityLabel' for='addTaskPriority'>Priority:</label>
                 <select id='addTaskPrioritySelect' name='addTaskPriority' class='taskFormInputElement'>
                     <option value='low'>Low</option>
@@ -110,9 +110,39 @@
                     <option value='Project #2'>Project #2</option>
                     <option value='Project #3'>Project #3</option>
                 </select>
-                <div id='addTaskFormBtns'>
-                    <button type='submit' id='submitAddTaskBtn' class='addTaskFormBtn'>Add</button>
-                    <button type='button' id='cancelAddTaskBtn' class='addTaskFormBtn'>Cancel</button>
+                <div id='addTaskFormBtns' class='taskFormBtnsDiv'>
+                    <button type='submit' id='submitAddTaskBtn' class='taskFormBtn submitTaskFormBtn'>Add</button>
+                    <button type='button' id='cancelAddTaskBtn' class='taskFormBtn cancelTaskFormBtn'>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id='editTaskModalBackground' class='modalBackground displayFlex'>
+        <div id='editTaskModalContent' class='taskFormModalContent'>
+            <h1 id='editTaskTitle' class='taskFormTitle'>Edit Task</h1>
+            <form id='editTaskForm' class='taskForm'>
+                <label id='editTaskNameLabel' for='editTaskName'>Name:</label>
+                <input type='text' id='editTaskNameInput' name='editTaskName' class='taskFormInputElement' required>
+                <label id='editTaskNotesLabel' for='editTaskNotes'>Notes:</label>
+                <textarea type='textarea' id='editTaskNotesTextArea' name='editTaskNotes' class='taskFormInputElement taskFormNotesTextArea'></textarea>
+                <label id='editTaskPriorityLabel' for='editTaskPriority'>Priority:</label>
+                <select id='editTaskPrioritySelect' name='editTaskPriority' class='taskFormInputElement'>
+                    <option value='low'>Low</option>
+                    <option value='medium'>Medium</option>
+                    <option value='high'>High</option>
+                </select>
+                <label id='editTaskDueDateLabel' for='editTaskDueDate'>Due Date:</label>
+                <input type='date' id='editTaskDueDateInput' name='editTaskDueDate' class='taskFormInputElement' min="2020-01-01" max='2030-01-01' required>
+                <label id='editTaskProjectLabel' for='editTaskProject'>Project:</label>
+                <select id='editTaskProjectSelect' name='editTaskProject' class='taskFormInputElement'>
+                    <option value='Project #1'>Project #1</option>
+                    <option value='Project #2'>Project #2</option>
+                    <option value='Project #3'>Project #3</option>
+                </select>
+                <div id='editTaskFormBtns' class='taskFormBtnsDiv'>
+                    <button type='submit' id='submitEditTaskBtn' class='taskFormBtn submitTaskFormBtn'>Edit</button>
+                    <button type='button' id='cancelEditTaskBtn' class='taskFormBtn cancelTaskFormBtn'>Cancel</button>
                 </div>
             </form>
         </div>
