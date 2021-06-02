@@ -27,8 +27,4 @@ const projects = (() => {
     return {checkSubmitProjectInput};
 })();
 
-const tasks = (() => {
-    return {};
-})();
-
 export {errors}
