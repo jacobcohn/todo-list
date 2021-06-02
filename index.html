@@ -89,7 +89,7 @@
     </div>
 
     <div id='addTaskModalBackground' class='modalBackground displayNone'>
-        <div id='addTaskModalContent' class='taskFormModalContent'>
+        <div id='addTaskModalContent' class='taskModalContent'>
             <h1 id='addTaskTitle' class='taskFormTitle'>Add Task</h1>
             <form id='addTaskForm' class='taskForm'>
                 <label id='addTaskNameLabel' for='addTaskName'>Name:</label>
@@ -118,8 +118,8 @@
         </div>
     </div>
 
-    <div id='editTaskModalBackground' class='modalBackground displayFlex'>
-        <div id='editTaskModalContent' class='taskFormModalContent'>
+    <div id='editTaskModalBackground' class='modalBackground displayNone'>
+        <div id='editTaskModalContent' class='taskModalContent'>
             <h1 id='editTaskTitle' class='taskFormTitle'>Edit Task</h1>
             <form id='editTaskForm' class='taskForm'>
                 <label id='editTaskNameLabel' for='editTaskName'>Name:</label>
@@ -145,6 +145,22 @@
                     <button type='button' id='cancelEditTaskBtn' class='taskFormBtn cancelTaskFormBtn'>Cancel</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id='displayTaskModalBackground' class='modalBackground displayFlex'>
+        <div id='displayTaskModalContent' class='taskModalContent'>
+            <p id='displayTaskNameLabel' class='displayTaskElement'>Name:</p>
+            <p id='displayTaskNameDescription' class='displayTaskElement'>Clean Dished</p>
+            <p id='displayTaskNotesLabel' class='displayTaskElement'>Notes:</p> 
+            <p id='displayTaskNotesDescription' class='displayTaskElement'>Do It After Dinner</p> <!--This might be a problem bc notes might be big-->
+            <p id='displayTaskPriorityLabel' class='displayTaskElement'>Priority:</p>
+            <p id='displayTaskPrioityDescription' class='displayTaskElement'>Low</p>
+            <p id='displayTaskDueDateLabel' class='displayTaskElement'>Due Date:</p>
+            <p id='displayTaskDueDateDescription' class='displayTaskElement'>05/31/21</p>
+            <p id='displayTaskProjectLabel' class='displayTaskElement'>Project:</p>
+            <p id='displayTaskProjectDescription' class='displayTaskElement'>Chores</p>
+            <button id='displayTaskCloseBtn' class='displayTaskElement'>Close</button>
         </div>
     </div>
 
