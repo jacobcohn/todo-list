@@ -43,27 +43,27 @@
                 <div class='taskDiv'>
                     <div class='taskPriority'></div>
                     <div class='taskStatus'>
-                        <i class="fas fa-check taskStatusIcon"></i>
+                        <i class="fas fa-check taskStatusIcon displayNone"></i>
                     </div>
                     <div class='taskName'>Clean Dishes</div>
                     <div class='taskDueDate'>05/31/21</div>
                     <i class="fas fa-edit taskEditIcon"></i>
                     <i class="fas fa-trash taskDeleteIcon"></i>
                 </div>
-                <div class='taskDiv'>
+                <div class='taskDiv taskDivCompleted'>
                     <div class='taskPriority'></div>
                     <div class='taskStatus'>
                         <i class="fas fa-check taskStatusIcon"></i>
                     </div>
-                    <div class='taskName'>Clean Room</div>
-                    <div class='taskDueDate'>06/01/21</div>
+                    <div class='taskName lineThrough'>Clean Room</div>
+                    <div class='taskDueDate lineThrough'>06/01/21</div>
                     <i class="fas fa-edit taskEditIcon"></i>
                     <i class="fas fa-trash taskDeleteIcon"></i>
                 </div>
                 <div class='taskDiv'>
                     <div class='taskPriority'></div>
                     <div class='taskStatus'>
-                        <i class="fas fa-check taskStatusIcon"></i>
+                        <i class="fas fa-check taskStatusIcon displayNone"></i>
                     </div>
                     <div class='taskName'>Clean Closet</div>
                     <div class='taskDueDate'>06/02/21</div>
@@ -88,10 +88,40 @@
         </div>
     </div>
 
-    <div id='modalBackground' class='displayNone'>
-        <div id='modalContent'>
-            <h1 id='modalMessage'></h1>
-            <button id='modalBtn'>Close</button>
+    <div id='addTaskModalBackground' class='modalBackground displayNone'>
+        <div id='addTaskModalContent'>
+            <h1 id='addTaskTitle'>Add Task</h1>
+            <form id='addTaskForm'>
+                <label id='addTaskNameLabel' for='addTaskName'>Name:</label>
+                <input type='text' id='addTaskNameInput' name='addTaskName' class='taskFormInputElement' required>
+                <label id='addTaskNotesLabel' for='addTaskNotes'>Notes:</label>
+                <textarea type='textarea' id='addTaskNotesTextArea' name='addTaskNotes' class='taskFormInputElement'></textarea>
+                <label id='addTaskPriorityLabel' for='addTaskPriority'>Priority:</label>
+                <select id='addTaskPrioritySelect' name='addTaskPriority' class='taskFormInputElement'>
+                    <option value='low'>Low</option>
+                    <option value='medium'>Medium</option>
+                    <option value='high'>High</option>
+                </select>
+                <label id='addTaskDueDateLabel' for='addTaskDueDate'>Due Date:</label>
+                <input type='date' id='addTaskDueDateInput' name='addTaskDueDate' class='taskFormInputElement' min="2020-01-01" max='2030-01-01' required>
+                <label id='addTaskProjectLabel' for='addTaskProject'>Project:</label>
+                <select id='addTaskProjectSelect' name='addTaskProject' class='taskFormInputElement'>
+                    <option value='Project #1'>Project #1</option>
+                    <option value='Project #2'>Project #2</option>
+                    <option value='Project #3'>Project #3</option>
+                </select>
+                <div id='addTaskFormBtns'>
+                    <button type='submit' id='submitAddTaskBtn' class='addTaskFormBtn'>Add</button>
+                    <button type='button' id='cancelAddTaskBtn' class='addTaskFormBtn'>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id='errorModalBackground' class='modalBackground displayNone'>
+        <div id='errorModalContent'>
+            <h1 id='errorModalMessage'></h1>
+            <button id='errorModalBtn'>Close</button>
         </div>
     </div>
 </body>

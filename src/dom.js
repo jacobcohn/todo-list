@@ -19,11 +19,11 @@ const dom = (() => {
     };
 
     const displayError = (message) => {
-        modal.showErrorMessage(message);
+        errorModal.showErrorMessage(message);
     }
 
-    const closeModal = () => {
-        modal.switchModalOnOrOff();
+    const closeErrorModal = () => {
+        errorModal.switchErrorModalOnOrOff();
     }
 
     const deleteProject = (projectName) => {
@@ -36,7 +36,7 @@ const dom = (() => {
     };
 
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
-        closeModal, deleteProject, selectProject};
+        closeErrorModal, deleteProject, selectProject};
 })();
 
 const projects = (() => {
@@ -112,21 +112,21 @@ const tasks = (() => {
     return {changeTitle};
 })();
 
-const modal = (() => {
-    const modalMessage = document.getElementById('modalMessage');
-    const modalBackground = document.getElementById('modalBackground');
+const errorModal = (() => {
+    const errorModalMessage = document.getElementById('errorModalMessage');
+    const errorModalBackground = document.getElementById('errorModalBackground');
 
     const showErrorMessage = (message) => {
-        modalMessage.textContent = message;
-        switchModalOnOrOff();
+        errorModalMessage.textContent = message;
+        switchErrorModalOnOrOff();
     };
 
-    const switchModalOnOrOff = () => {
-        modalBackground.classList.toggle('displayNone');
-        modalBackground.classList.toggle('displayFlex');
+    const switchErrorModalOnOrOff = () => {
+        errorModalBackground.classList.toggle('displayNone');
+        errorModalBackground.classList.toggle('displayFlex');
     };
 
-    return {showErrorMessage, switchModalOnOrOff};
+    return {showErrorMessage, switchErrorModalOnOrOff};
 })();
 
 export {dom}
