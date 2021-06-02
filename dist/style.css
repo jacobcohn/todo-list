@@ -317,7 +317,7 @@ a {
     align-items: center;
 }
 
-#addTaskModalContent {
+.taskFormModalContent {
     background: #ECEBF3;
     min-width: 400px;
     padding: 20px;
@@ -329,13 +329,13 @@ a {
     align-items: center;
 }
 
-#addTaskTitle {
+.taskFormTitle {
     font-size: 40px;
     height: 40px;
     margin: 10px 0px 30px 0px;
 }
 
-#addTaskForm {
+.taskForm {
     font-size: 20px;
     width: 100%;
     display: grid;
@@ -354,21 +354,21 @@ a {
     outline: none;
 }
 
-#addTaskNotesTextArea {
+.taskFormNotesTextArea {
     min-width: 300px;
     max-width: 500px;
     min-height: 100px;
     max-height: 200px;
 }
 
-#addTaskFormBtns {
+.taskFormBtnsDiv {
     margin-top: 20px;
     grid-area: 6 / 1 / 7 / 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.addTaskFormBtn {
+.taskFormBtn {
     color: white;
     font-size: 30px;
     margin: 0px 5px 0px 5px;
@@ -377,21 +377,21 @@ a {
     border-radius: 5px;
 }
 
-#submitAddTaskBtn {
+.submitTaskFormBtn {
     color: white;
     background: rgba(51, 91, 65, 0.6);
 }
 
-#submitAddTaskBtn:hover {
+.submitTaskFormBtn:hover {
     background: rgba(51, 91, 65, 0.8);
 }
 
-#cancelAddTaskBtn {
+.cancelTaskFormBtn {
     color: white;
     background: rgba(227, 100, 113, 0.7);
 }
 
-#cancelAddTaskBtn:hover {
+.cancelTaskFormBtn:hover {
     background: rgba(227, 100, 113, 0.9);
 }
 
