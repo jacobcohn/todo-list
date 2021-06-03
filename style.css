@@ -452,8 +452,9 @@ a {
 #errorModalBtn {
     color:#ECEBF3;
     background: rgba(227, 100, 113, 0.7);
-    font-size: 50px;
+    font-size: 40px;
     width: 100%;
+    height: 60px;
     border: none;
     border-radius: 5px;
     align-self: baseline;
