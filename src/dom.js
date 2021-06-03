@@ -32,7 +32,7 @@ const dom = (() => {
 
     const selectProject = (projectName) => {
         tasks.changeTitle(projectName);
-        // display all tasks in projectName
+        tasks.displayAllTasksInProject(projectName);
     };
 
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
@@ -109,7 +109,105 @@ const tasks = (() => {
         taskTitle.textContent = projectName;
     };
 
-    return {changeTitle};
+    const findTaskObj = (taskId) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        let finalTaskObj;
+        tasksArray.forEach(taskObj => {
+            if (taskObj.id == taskId) {
+                finalTaskObj = taskObj;
+            };
+        });
+        return finalTaskObj;
+    };
+
+    const findTasksArray = (projectName) => {
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        let tasksArray;
+        projectsArray.forEach(project => {
+            if (project.name == projectName) {
+                tasksArray = project.tasks;
+            };
+        });
+        return tasksArray;
+    };
+
+    const displayATask = (taskId) => {
+        const allTasksContainer = document.getElementById('allTasksContainer');
+        const taskObj = findTaskObj(taskId);
+        
+        // create taskDiv
+        const taskDiv = document.createElement('div');
+        taskDiv.id = taskObj.id + ' taskDiv';
+        taskDiv.classList.toggle('taskDiv');
+        allTasksContainer.appendChild(taskDiv);
+
+        // create taskPriority
+        const taskPriority = document.createElement('div');
+        taskPriority.id = taskObj.id + ' taskPriority';
+        taskPriority.classList.toggle('taskPriority');
+        taskPriority.classList.toggle(taskObj.priority);
+        taskDiv.appendChild(taskPriority);
+
+        // create taskStatus
+        const taskStatus = document.createElement('div');
+        taskStatus.id = taskObj.id + ' taskStatus';
+        taskStatus.classList.toggle('taskStatus');
+        taskDiv.appendChild(taskStatus);
+
+        // create taskStatusIcon
+        const taskStatusIcon = document.createElement('i');
+        taskStatusIcon.id = taskObj.id + ' taskStatusIcon';
+        taskStatusIcon.classList.toggle('fas');
+        taskStatusIcon.classList.toggle('fa-check');
+        taskStatusIcon.classList.toggle('taskStatusIcon');
+        taskStatusIcon.classList.toggle('displayNone');
+        taskStatus.appendChild(taskStatusIcon);
+
+        // create taskName
+        const taskName = document.createElement('div');
+        taskName.id = taskObj.id + ' taskName';
+        taskName.classList.toggle('taskName');
+        taskName.textContent = taskObj.name;
+        taskDiv.appendChild(taskName);
+
+        // create taskDueDate
+        const taskDueDate = document.createElement('div');
+        taskDueDate.id = taskObj.id + ' taskDueDate';
+        taskDueDate.classList.toggle('taskDueDate');
+        taskDueDate.textContent = taskObj.dueDate;
+        taskDiv.appendChild(taskDueDate);
+
+        // create taskEditIcon
+        const taskEditIcon = document.createElement('i');
+        taskEditIcon.id = taskObj.id + ' taskEditIcon';
+        taskEditIcon.classList.toggle('fas');
+        taskEditIcon.classList.toggle('fa-edit');
+        taskEditIcon.classList.toggle('taskEditIcon');
+        taskDiv.appendChild(taskEditIcon);
+
+        // create taskDeleteIcon
+        const taskDeleteIcon = document.createElement('i');
+        taskDeleteIcon.id = taskObj.id + ' taskDeleteIcon';
+        taskDeleteIcon.classList.toggle('fas');
+        taskDeleteIcon.classList.toggle('fa-trash');
+        taskDeleteIcon.classList.toggle('taskDeleteIcon');
+        taskDiv.appendChild(taskDeleteIcon);
+    };
+
+    const displayNewTask = (taskId) => { // parameter taskId might be a problem
+        const selectedProject = sessionStorage.getItem('selectedProject');
+        const taskObj = findTaskObj(taskId);
+        if (taskObj.project == selectedProject) {
+            displayATask(taskObj.id);
+        };
+    };
+
+    const displayAllTasksInProject = (projectName) => {
+        const tasksArray = findTasksArray(projectName);
+        tasksArray.forEach(task => displayATask(task));
+    };
+
+    return {changeTitle, displayNewTask, displayAllTasksInProject};
 })();
 
 const errorModal = (() => {

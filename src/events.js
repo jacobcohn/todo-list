@@ -172,31 +172,33 @@ const tasks = (() => {
     };
 
     const submitAddTask = () => {
-        const submitAddTaskBtn = document.getElementById('submitAddTaskBtn');
-        submitAddTaskBtn.addEventListener('click', e => {
+        const addTaskForm = document.getElementById('addTaskForm');
+        addTaskForm.addEventListener('submit', e => {
+            e.preventDefault();
             // code here
-        })
+        });
     };
 
     const cancelAddTask = () => {
         const cancelAddTaskBtn = document.getElementById('cancelAddTaskBtn');
         cancelAddTaskBtn.addEventListener('click', () => {
             // code here
-        })
+        });
     };
 
     const submitEditTask = () => {
-        const submitEditTaskBtn = document.getElementById('submitEditTaskBtn');
-        submitEditTaskBtn.addEventListener('click', e => {
+        const editTaskForm = document.getElementById('editTaskForm');
+        editTaskForm.addEventListener('submit', e => {
+            e.preventDefault();
             // code here
-        })
+        });
     };
 
     const cancelEditTask = () => {
         const cancelEditTaskBtn = document.getElementById('cancelEditTaskBtn');
         cancelEditTaskBtn.addEventListener('click', () => {
             // code here
-        })
+        });
     };
     
     const addEventListenersToTask = (task) => {

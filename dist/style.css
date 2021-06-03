@@ -236,11 +236,14 @@ button {
 }
 
 .taskPriority {
-    background: #F5F398; /* rgba(51, 91, 65, 0.8) OR rgba(51, 91, 65, 0.8) */
     height: 100%;
     width: 5px;
     justify-self: flex-start;
 }
+
+.low {background: rgba(51, 91, 65, 0.8);}
+.medium {background: #F5DE0F;}
+.high {background: rgba(227, 100, 113, 0.8);}
 
 .taskStatus {
     height: 20px;
