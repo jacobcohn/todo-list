@@ -4,7 +4,8 @@ import {errors} from './errors'
 
 /* 
 things that I need to do:
-- selectProject
+- taskEvents
+- make sure to have error message for adding new task when no projects
 */
 
 
@@ -168,7 +169,8 @@ const tasks = (() => {
     const addTask = () => {
         const addTaskBtn = document.getElementById('addTaskBtn');
         addTaskBtn.addEventListener('click', () => {
-            // code here
+            if (errors.isAddTaskError()) return;
+            dom.addTask();
         });
     };
 
@@ -190,7 +192,7 @@ const tasks = (() => {
     const cancelAddTask = () => {
         const cancelAddTaskBtn = document.getElementById('cancelAddTaskBtn');
         cancelAddTaskBtn.addEventListener('click', () => {
-            // code here
+            dom.cancelAddTask();
         });
     };
 

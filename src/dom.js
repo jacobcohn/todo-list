@@ -35,8 +35,16 @@ const dom = (() => {
         tasks.displayAllTasksInProject(projectName);
     };
 
+    const addTask = () => {
+        tasks.switchAddTaskFormOnOff();
+    };
+
+    const cancelAddTask = () => {
+        tasks.switchAddTaskFormOnOff();
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
-        closeErrorModal, deleteProject, selectProject};
+        closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask};
 })();
 
 const projects = (() => {
@@ -214,7 +222,14 @@ const tasks = (() => {
         tasksArray.forEach(task => displayATask(task));
     };
 
-    return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject};
+    const switchAddTaskFormOnOff = () => {
+        const addTaskModalBackground = document.getElementById('addTaskModalBackground');
+        addTaskModalBackground.classList.toggle('displayNone');
+        addTaskModalBackground.classList.toggle('displayFlex');
+    };
+
+    return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
+        switchAddTaskFormOnOff};
 })();
 
 const errorModal = (() => {

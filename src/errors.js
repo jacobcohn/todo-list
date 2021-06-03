@@ -5,7 +5,11 @@ const errors = (() => {
         return projects.checkSubmitProjectInput();
     }
 
-    return {isSubmitProjectError};
+    const isAddTaskError = () => {
+        return projects.moreThanOneProject();
+    }
+
+    return {isSubmitProjectError, isAddTaskError};
 })();
 
 const projects = (() => {
@@ -24,7 +28,16 @@ const projects = (() => {
         return false;
     }
 
-    return {checkSubmitProjectInput};
+    const moreThanOneProject = () => {
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        if (projectsArray.length <= 1) {
+            dom.displayError('Add a Project First');
+            return true;
+        };
+        return false;
+    };
+
+    return {checkSubmitProjectInput, moreThanOneProject};
 })();
 
 export {errors}
