@@ -256,6 +256,14 @@ button {
     font-size: 15px;
 }
 
+.taskName {
+    cursor: default;
+}
+
+.taskDueDate {
+    cursor: default;
+}
+
 .lineThrough {
     text-decoration: line-through;
 }
