@@ -1,7 +1,6 @@
 const logic = (() => {
     const initiate = () => {
         projects.checkArray();
-        projects.setSelectedProject('Home');
         tasks.checkArray();
     };
 

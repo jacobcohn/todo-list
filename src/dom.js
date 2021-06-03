@@ -1,6 +1,5 @@
 const dom = (() => {
     const initiate = () => {
-        selectProject('Home');
         projects.displayAllProjects();
     };
 
@@ -32,6 +31,7 @@ const dom = (() => {
 
     const selectProject = (projectName) => {
         tasks.changeTitle(projectName);
+        tasks.deleteAllTasksInDisplay();
         tasks.displayAllTasksInProject(projectName);
     };
 
@@ -131,6 +131,13 @@ const tasks = (() => {
         return tasksArray;
     };
 
+    const deleteAllTasksInDisplay = () => {
+        const allTasksContainer = document.getElementById('allTasksContainer');
+        while (allTasksContainer.firstChild) {
+            allTasksContainer.removeChild(allTasksContainer.firstChild);
+        };
+    };
+
     const displayATask = (taskId) => {
         const allTasksContainer = document.getElementById('allTasksContainer');
         const taskObj = findTaskObj(taskId);
@@ -207,7 +214,7 @@ const tasks = (() => {
         tasksArray.forEach(task => displayATask(task));
     };
 
-    return {changeTitle, displayNewTask, displayAllTasksInProject};
+    return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject};
 })();
 
 const errorModal = (() => {

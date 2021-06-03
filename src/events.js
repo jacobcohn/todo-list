@@ -13,6 +13,7 @@ const events = (() => {
         initialProjectEvents();
         initialTaskEvents();
         initialErrorModalEvents();
+        projects.selectProjectFunction('Home');
     };
 
     const initialProjectEvents = () => {
@@ -54,9 +55,13 @@ const projects = (() => {
     const selectProjectEventListener = (projectBtn) => {
         projectBtn.addEventListener('click', e => {
             const projectName = e.target.id.replace(' projectBtn', '');
-            logic.selectProject(projectName);
-            dom.selectProject(projectName);
+            selectProjectFunction(projectName);
         });
+    };
+
+    const selectProjectFunction = (projectName) => {
+        logic.selectProject(projectName);
+        dom.selectProject(projectName);
     };
 
     const deleteProject = () => {
@@ -71,6 +76,9 @@ const projects = (() => {
             const projectName = e.target.id.replace(' projectDeleteIcon', '');
             logic.deleteProject(projectName);
             dom.deleteProject(projectName);
+
+            const selectedProject = sessionStorage.getItem('selectedProject');
+            if (selectedProject == projectName) selectProjectFunction('Home');
         });
     };
 
@@ -109,7 +117,7 @@ const projects = (() => {
         deleteProjectEventListener(newProjectDeleteIcon);
     };
 
-    return {selectProject, deleteProject, addProject, cancelAddProject, submitNewProject};
+    return {selectProject, selectProjectFunction, deleteProject, addProject, cancelAddProject, submitNewProject};
 })();
 
 const tasks = (() => {
