@@ -24,18 +24,23 @@ const events = (() => {
     };
 
     const initialTaskEvents = () => {
-
+        tasks.changeStatus();
+        tasks.selectTask();
+        tasks.editTask();
+        tasks.deleteTask();
+        tasks.addTask();
+        tasks.closeSelectTask();
+        tasks.submitAddTask();
+        tasks.cancelAddTask();
+        tasks.submitEditTask();
+        tasks.cancelEditTask();
     };
 
     const initialErrorModalEvents = () => {
         errorModal.closeErrorModal();
     }
 
-    const submitNewProject = () => {
-        projects.addEventListenersToProject();
-    };
-
-    return {initiate, submitNewProject};
+    return {initiate};
 })();
 
 const projects = (() => {
@@ -90,7 +95,7 @@ const projects = (() => {
             if (errors.isSubmitProjectError()) return;
             logic.submitNewProject();
             dom.submitNewProject();
-            events.submitNewProject();
+            addEventListenersToProject();
         });
     };
 
@@ -104,11 +109,117 @@ const projects = (() => {
         deleteProjectEventListener(newProjectDeleteIcon);
     };
 
-    return {selectProject, deleteProject, addProject, cancelAddProject, submitNewProject, addEventListenersToProject}
+    return {selectProject, deleteProject, addProject, cancelAddProject, submitNewProject};
 })();
 
 const tasks = (() => {
+    const changeStatus = () => {
+        const taskStatusDivs = document.querySelectorAll('.taskStatus');
+        taskStatusDivs.forEach(div => changeStatusEventListener(div));
+    };
 
+    const changeStatusEventListener = (div) => {
+        div.addEventListener('click', e => {
+            // code here
+        });
+    };
+
+    const selectTask = () => {
+        const taskNameDivs = document.querySelectorAll('.taskName');
+        taskNameDivs.forEach(div => selectTaskEventListener(div));
+    };
+
+    const selectTaskEventListener = (div) => {
+        div.addEventListener('click', e => {
+            // code here
+        });
+    };
+
+    const editTask = () => {
+        const taskEditIcons = document.querySelectorAll('.taskEditIcon');
+        taskEditIcons.forEach(icon => editTaskEventListener(icon));
+    };
+
+    const editTaskEventListener = (icon) => {
+        icon.addEventListener('click', e => {
+            // code here
+        });
+    };
+
+    const deleteTask = () => {
+        const taskDeleteIcons = document.querySelectorAll('.taskDeleteIcon');
+        taskDeleteIcons.forEach(icon => deleteTaskEventListener(icon));
+    };
+
+    const deleteTaskEventListener = (icon) => {
+        icon.addEventListener('click', e => {
+            // code here
+        });
+    };
+
+    const addTask = () => {
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        addTaskBtn.addEventListener('click', () => {
+            // code here
+        });
+    };
+
+    const closeSelectTask = () => {
+        const closeSelectTaskBtn = document.getElementById('displayTaskCloseBtn');
+        closeSelectTaskBtn.addEventListener('click', () => {
+            // code here
+        });
+    };
+
+    const submitAddTask = () => {
+        const submitAddTaskBtn = document.getElementById('submitAddTaskBtn');
+        submitAddTaskBtn.addEventListener('click', e => {
+            // code here
+        })
+    };
+
+    const cancelAddTask = () => {
+        const cancelAddTaskBtn = document.getElementById('cancelAddTaskBtn');
+        cancelAddTaskBtn.addEventListener('click', () => {
+            // code here
+        })
+    };
+
+    const submitEditTask = () => {
+        const submitEditTaskBtn = document.getElementById('submitEditTaskBtn');
+        submitEditTaskBtn.addEventListener('click', e => {
+            // code here
+        })
+    };
+
+    const cancelEditTask = () => {
+        const cancelEditTaskBtn = document.getElementById('cancelEditTaskBtn');
+        cancelEditTaskBtn.addEventListener('click', () => {
+            // code here
+        })
+    };
+    
+    const addEventListenersToTask = (task) => {
+        // test if all of these work at some point (writing this in advance)
+        const taskStatusDivs = document.querySelectorAll('.taskStatus');
+        const newTaskStatusDiv = taskStatusDivs[taskStatusDivs.length - 1];
+        changeStatusEventListener(newTaskStatusDiv);
+
+        const taskNameDivs = document.querySelectorAll('.taskName');
+        const newTaskNameDiv = taskNameDivs[taskNameDivs.length - 1];
+        selectTaskEventListener(newTaskNameDiv);
+
+        const taskEditIcons = document.querySelectorAll('.taskEditIcon');
+        const newTaskEditIcon = taskEditIcons[taskEditIcons.length - 1];
+        editTaskEventListener(newTaskEditIcon);
+
+        const taskDeleteIcons = document.querySelectorAll('.taskDeleteIcon');
+        const newTaskDeleteIcon = taskDeleteIcons[taskDeleteIcons.length - 1];
+        deleteTaskEventListener(newTaskDeleteIcon);
+    };
+
+    return {changeStatus, selectTask, editTask, deleteTask, addTask, closeSelectTask, 
+        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask};
 })();
 
 const errorModal = (() => {
