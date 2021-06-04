@@ -57,9 +57,20 @@ const dom = (() => {
         tasks.changeStatusClasses(taskId);
     };
 
+    const selectTask = (taskId) => {
+        tasks.changeTextContentForDisplayTaskModal(taskId);
+        const displayTaskModalBackground = document.getElementById('displayTaskModalBackground');
+        tasks.switchTaskModalOnOff(displayTaskModalBackground);
+    };
+
+    const closeSelectTask = () => {
+        const displayTaskModalBackground = document.getElementById('displayTaskModalBackground');
+        tasks.switchTaskModalOnOff(displayTaskModalBackground);
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
         closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
-        submitAddTask, changeStatus};
+        submitAddTask, changeStatus, selectTask, closeSelectTask};
 })();
 
 const projects = (() => {
@@ -267,8 +278,32 @@ const tasks = (() => {
         taskDueDate.classList.toggle('lineThrough');
     };
 
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
+    const changeTextContentForDisplayTaskModal = (taskId) => {
+        const taskObj = findTaskObj(taskId);
+
+        const taskName = document.getElementById('displayTaskNameDescription');
+        taskName.textContent = taskObj.name;
+
+        const taskNotes = document.getElementById('displayTaskNotesDescription');
+        taskNotes.textContent = taskObj.notes;
+
+        const taskDueDate = document.getElementById('displayTaskDueDateDescription');
+        taskDueDate.textContent = taskObj.dueDate;
+
+        const taskPriority = document.getElementById('displayTaskPriorityDescription');
+        taskPriority.textContent = capitalizeFirstLetter(taskObj.priority);
+
+        const taskProject = document.getElementById('displayTaskProjectDescription');
+        taskProject.textContent = taskObj.project;
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
-        resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses};
+        resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses, 
+        changeTextContentForDisplayTaskModal};
 })();
 
 const errorModal = (() => {

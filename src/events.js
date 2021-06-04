@@ -146,7 +146,8 @@ const tasks = (() => {
 
     const selectTaskEventListener = (div) => {
         div.addEventListener('click', e => {
-            // code here
+            const taskId = e.target.id.replace(' taskName', '');
+            dom.selectTask(taskId);
         });
     };
 
@@ -158,6 +159,7 @@ const tasks = (() => {
     const editTaskEventListener = (icon) => {
         icon.addEventListener('click', e => {
             // code here
+            console.log('editTask');
         });
     };
 
@@ -169,6 +171,7 @@ const tasks = (() => {
     const deleteTaskEventListener = (icon) => {
         icon.addEventListener('click', e => {
             // code here
+            console.log('deleteTask');
         });
     };
 
@@ -183,7 +186,7 @@ const tasks = (() => {
     const closeSelectTask = () => {
         const closeSelectTaskBtn = document.getElementById('displayTaskCloseBtn');
         closeSelectTaskBtn.addEventListener('click', () => {
-            // code here
+            dom.closeSelectTask();
         });
     };
 

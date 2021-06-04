@@ -100,7 +100,6 @@ const tasks = (() => {
     };
 
     const addTaskToLocalStorage = (taskObj) => {
-        console.log(taskObj);
         addTaskToTasksArray(taskObj);
         addTaskToProjects(taskObj);
     }

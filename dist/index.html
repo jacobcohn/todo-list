@@ -39,28 +39,7 @@
             <div id='taskTitleDiv'>
                 <h2 id='taskTitle'>Home</h2>
             </div>
-            <div id='allTasksContainer'>
-                <!-- <div class='taskDiv'>
-                    <div class='taskPriority low'></div>
-                    <div class='taskStatus'>
-                        <i class="fas fa-check taskStatusIcon displayNone"></i>
-                    </div>
-                    <div class='taskName'>Clean Dishes</div>
-                    <div class='taskDueDate'>05/31/21</div>
-                    <i class="fas fa-edit taskEditIcon"></i>
-                    <i class="fas fa-trash taskDeleteIcon"></i>
-                </div>
-                <div class='taskDiv taskDivCompleted'>
-                    <div class='taskPriority high'></div>
-                    <div class='taskStatus'>
-                        <i class="fas fa-check taskStatusIcon"></i>
-                    </div>
-                    <div class='taskName lineThrough'>Clean Room</div>
-                    <div class='taskDueDate lineThrough'>06/01/21</div>
-                    <i class="fas fa-edit taskEditIcon"></i>
-                    <i class="fas fa-trash taskDeleteIcon"></i>
-                </div> -->
-            </div>
+            <div id='allTasksContainer'></div>
             <div id='addTaskBtnDiv'>
                 <button id='addTaskBtn' class='displayDefault'>
                     <i class="fas fa-plus"></i>
@@ -85,7 +64,7 @@
                 <label id='addTaskNameLabel' for='addTaskName'>Name:</label>
                 <input type='text' id='addTaskNameInput' name='addTaskName' class='taskFormInputElement' required>
                 <label id='addTaskNotesLabel' for='addTaskNotes'>Notes:</label>
-                <textarea type='textarea' id='addTaskNotesTextArea' name='addTaskNotes' class='taskFormInputElement taskFormNotesTextArea'></textarea>
+                <textarea type='textarea' id='addTaskNotesTextArea' name='addTaskNotes' class='taskFormInputElement taskFormNotesTextArea' maxlength="100"></textarea>
                 <label id='addTaskDueDateLabel' for='addTaskDueDate'>Due Date:</label>
                 <input type='date' id='addTaskDueDateInput' name='addTaskDueDate' class='taskFormInputElement' min="2020-01-01" max='2030-01-01' required>
                 <label id='addTaskPriorityLabel' for='addTaskPriority'>Priority:</label>
@@ -111,7 +90,7 @@
                 <label id='editTaskNameLabel' for='editTaskName'>Name:</label>
                 <input type='text' id='editTaskNameInput' name='editTaskName' class='taskFormInputElement' required>
                 <label id='editTaskNotesLabel' for='editTaskNotes'>Notes:</label>
-                <textarea type='textarea' id='editTaskNotesTextArea' name='editTaskNotes' class='taskFormInputElement taskFormNotesTextArea'></textarea>
+                <textarea type='textarea' id='editTaskNotesTextArea' name='editTaskNotes' class='taskFormInputElement taskFormNotesTextArea' maxlength="100"></textarea>
                 <label id='editTaskPriorityLabel' for='editTaskPriority'>Priority:</label>
                 <select id='editTaskPrioritySelect' name='editTaskPriority' class='taskFormInputElement'>
                     <option value='low'>Low</option>
@@ -137,15 +116,15 @@
     <div id='displayTaskModalBackground' class='modalBackground displayNone'>
         <div id='displayTaskModalContent' class='taskModalContent'>
             <p id='displayTaskNameLabel' class='displayTaskElement'>Name:</p>
-            <p id='displayTaskNameDescription' class='displayTaskElement'>Clean Dished</p>
+            <p id='displayTaskNameDescription' class='displayTaskElement'></p>
             <p id='displayTaskNotesLabel' class='displayTaskElement'>Notes:</p> 
-            <p id='displayTaskNotesDescription' class='displayTaskElement'>Do It After Dinner</p> <!--This might be a problem bc notes might be big-->
-            <p id='displayTaskPriorityLabel' class='displayTaskElement'>Priority:</p>
-            <p id='displayTaskPrioityDescription' class='displayTaskElement'>Low</p>
+            <p id='displayTaskNotesDescription' class='displayTaskElement'></p>
             <p id='displayTaskDueDateLabel' class='displayTaskElement'>Due Date:</p>
-            <p id='displayTaskDueDateDescription' class='displayTaskElement'>05/31/21</p>
+            <p id='displayTaskDueDateDescription' class='displayTaskElement'></p>
+            <p id='displayTaskPriorityLabel' class='displayTaskElement'>Priority:</p>
+            <p id='displayTaskPriorityDescription' class='displayTaskElement'></p>
             <p id='displayTaskProjectLabel' class='displayTaskElement'>Project:</p>
-            <p id='displayTaskProjectDescription' class='displayTaskElement'>Chores</p>
+            <p id='displayTaskProjectDescription' class='displayTaskElement'></p>
             <button id='displayTaskCloseBtn' class='displayTaskElement'>Close</button>
         </div>
     </div>
