@@ -72,9 +72,23 @@ const dom = (() => {
         tasks.removeTaskFromDisplay(taskId);
     };
 
+    const editTask = (taskId) => {
+        const editTaskProjectSelect = document.getElementById('editTaskProjectSelect');
+        tasks.resetProjectOptionsToSelect(editTaskProjectSelect);
+        tasks.changeValueForEditTaskModal(taskId);
+        const editTaskModalBackground = document.getElementById('editTaskModalBackground');
+        tasks.switchTaskModalOnOff(editTaskModalBackground);
+    };
+
+    const cancelEditTask = () => {
+        const editTaskModalBackground = document.getElementById('editTaskModalBackground');
+        tasks.switchTaskModalOnOff(editTaskModalBackground);
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
         closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
-        submitAddTask, changeStatus, selectTask, closeSelectTask, deleteTask};
+        submitAddTask, changeStatus, selectTask, closeSelectTask, deleteTask, editTask, 
+        cancelEditTask};
 })();
 
 const projects = (() => {
@@ -310,9 +324,32 @@ const tasks = (() => {
         taskDiv.remove();
     };
 
+    const changeValueForEditTaskModal = (taskId) => {
+        const taskObj = findTaskObj(taskId);
+
+        const taskName = document.getElementById('editTaskNameInput');
+        taskName.value = taskObj.name;
+
+        const taskNotes = document.getElementById('editTaskNotesTextArea');
+        taskNotes.value = taskObj.notes;
+
+        const taskDueDate = document.getElementById('editTaskDueDateInput');
+        taskDueDate.value = taskObj.dueDate;
+
+        const taskPriority = document.getElementById('editTaskPrioritySelect');
+        const taskPriorityOptions = Array.from(taskPriority.querySelectorAll('option'));
+        const prioitySelectedOptionIndex = taskPriorityOptions.findIndex(option => option.value == taskObj.priority);
+        taskPriority.selectedIndex = prioitySelectedOptionIndex;
+
+        const taskProject = document.getElementById('editTaskProjectSelect');
+        const taskProjectOptions = Array.from(taskProject.querySelectorAll('option'));
+        const projectSelectedOptionIndex = taskProjectOptions.findIndex(option => option.value == taskObj.project);
+        taskProject.selectedIndex = projectSelectedOptionIndex;
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses, 
-        changeTextContentForDisplayTaskModal, removeTaskFromDisplay};
+        changeTextContentForDisplayTaskModal, removeTaskFromDisplay, changeValueForEditTaskModal};
 })();
 
 const errorModal = (() => {

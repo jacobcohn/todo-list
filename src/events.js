@@ -158,8 +158,8 @@ const tasks = (() => {
 
     const editTaskEventListener = (icon) => {
         icon.addEventListener('click', e => {
-            // code here
-            console.log('editTask');
+            const taskId = e.target.id.replace(' taskEditIcon', '');
+            dom.editTask(taskId);
         });
     };
 
@@ -221,7 +221,7 @@ const tasks = (() => {
     const cancelEditTask = () => {
         const cancelEditTaskBtn = document.getElementById('cancelEditTaskBtn');
         cancelEditTaskBtn.addEventListener('click', () => {
-            // code here
+            dom.cancelEditTask();
         });
     };
     
