@@ -1,5 +1,3 @@
-import {events} from "./events";
-
 const dom = (() => {
     const initiate = () => {
         projects.displayAllProjects();
@@ -232,10 +230,7 @@ const tasks = (() => {
 
     const displayAllTasksInProject = (projectName) => {
         const tasksArray = findTasksArray(projectName);
-        tasksArray.forEach(task => {
-            displayATask(task);
-            events.addEventListenersToTask();
-        });
+        tasksArray.forEach(task => displayATask(task));
     };
 
     const resetProjectOptionsToSelect = (select) => {

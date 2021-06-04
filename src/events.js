@@ -5,7 +5,8 @@ import {errors} from './errors'
 /* 
 things that I need to do:
 - selectedProject = addTaskForm Projects Placeholder
-- todays date = addTaskForm DueDate Placeholder
+- todays date = addTaskForm DueDate Placeholder + min/max close by
+- fix dueDate format
 */
 
 
@@ -67,6 +68,7 @@ const projects = (() => {
     const selectProjectFunction = (projectName) => {
         logic.selectProject(projectName);
         dom.selectProject(projectName);
+        tasks.addEventListenersToAllTaskDivs();
     };
 
     const deleteProject = () => {
@@ -122,7 +124,8 @@ const projects = (() => {
         deleteProjectEventListener(newProjectDeleteIcon);
     };
 
-    return {selectProject, selectProjectFunction, deleteProject, addProject, cancelAddProject, submitNewProject};
+    return {selectProject, selectProjectFunction, deleteProject, addProject, cancelAddProject, 
+        submitNewProject};
 })();
 
 const tasks = (() => {
@@ -221,7 +224,6 @@ const tasks = (() => {
     };
     
     const addEventListenersToTask = () => {
-        // test if all of these work at some point (writing this in advance)
         const taskStatusDivs = document.querySelectorAll('.taskStatus');
         const newTaskStatusDiv = taskStatusDivs[taskStatusDivs.length - 1];
         changeStatusEventListener(newTaskStatusDiv);
@@ -239,8 +241,15 @@ const tasks = (() => {
         deleteTaskEventListener(newTaskDeleteIcon);
     };
 
+    const addEventListenersToAllTaskDivs = () => {
+        changeStatus();
+        selectTask();
+        editTask();
+        deleteTask();
+    };
+
     return {changeStatus, selectTask, editTask, deleteTask, addTask, closeSelectTask, 
-        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask, addEventListenersToTask};
+        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask, addEventListenersToAllTaskDivs};
 })();
 
 const errorModal = (() => {
