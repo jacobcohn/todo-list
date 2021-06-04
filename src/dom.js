@@ -1,3 +1,5 @@
+import {events} from "./events";
+
 const dom = (() => {
     const initiate = () => {
         projects.displayAllProjects();
@@ -36,15 +38,26 @@ const dom = (() => {
     };
 
     const addTask = () => {
-        tasks.switchAddTaskFormOnOff();
+        const addTaskProjectSelect = document.getElementById('addTaskProjectSelect');
+        tasks.resetProjectOptionsToSelect(addTaskProjectSelect);
+        const addTaskModalBackground = document.getElementById('addTaskModalBackground');
+        tasks.switchTaskModalOnOff(addTaskModalBackground);
     };
 
     const cancelAddTask = () => {
-        tasks.switchAddTaskFormOnOff();
+        const addTaskModalBackground = document.getElementById('addTaskModalBackground');
+        tasks.switchTaskModalOnOff(addTaskModalBackground);
+    };
+
+    const submitAddTask = () => {
+        const addTaskModalBackground = document.getElementById('addTaskModalBackground');
+        tasks.switchTaskModalOnOff(addTaskModalBackground);
+        tasks.displayNewTask();
     };
 
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
-        closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask};
+        closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
+        submitAddTask};
 })();
 
 const projects = (() => {
@@ -209,27 +222,41 @@ const tasks = (() => {
         taskDiv.appendChild(taskDeleteIcon);
     };
 
-    const displayNewTask = (taskId) => { // parameter taskId might be a problem
+    const displayNewTask = () => {
+        const taskObj = JSON.parse(localStorage.getItem('tasks')).pop();
         const selectedProject = sessionStorage.getItem('selectedProject');
-        const taskObj = findTaskObj(taskId);
-        if (taskObj.project == selectedProject) {
+        if (selectedProject == taskObj.project || selectedProject == 'Home') {
             displayATask(taskObj.id);
         };
     };
 
     const displayAllTasksInProject = (projectName) => {
         const tasksArray = findTasksArray(projectName);
-        tasksArray.forEach(task => displayATask(task));
+        tasksArray.forEach(task => {
+            displayATask(task);
+            events.addEventListenersToTask();
+        });
     };
 
-    const switchAddTaskFormOnOff = () => {
-        const addTaskModalBackground = document.getElementById('addTaskModalBackground');
-        addTaskModalBackground.classList.toggle('displayNone');
-        addTaskModalBackground.classList.toggle('displayFlex');
+    const resetProjectOptionsToSelect = (select) => {
+        while (select.firstChild) select.removeChild(select.firstChild);
+        const projectNamesArray = JSON.parse(localStorage.getItem('projects')).map(project => project.name);
+        projectNamesArray.shift(); // removes Home
+        projectNamesArray.forEach(projectName => {
+            const optionForSelect = document.createElement('option');
+            optionForSelect.value = projectName;
+            optionForSelect.textContent = projectName;
+            select.appendChild(optionForSelect);
+        });
+    };
+
+    const switchTaskModalOnOff = (modalBackground) => {
+        modalBackground.classList.toggle('displayNone');
+        modalBackground.classList.toggle('displayFlex');
     };
 
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
-        switchAddTaskFormOnOff};
+        resetProjectOptionsToSelect, switchTaskModalOnOff};
 })();
 
 const errorModal = (() => {

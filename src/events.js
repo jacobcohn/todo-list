@@ -4,8 +4,8 @@ import {errors} from './errors'
 
 /* 
 things that I need to do:
-- taskEvents
-- make sure to have error message for adding new task when no projects
+- selectedProject = addTaskForm Projects Placeholder
+- todays date = addTaskForm DueDate Placeholder
 */
 
 
@@ -42,7 +42,11 @@ const events = (() => {
         errorModal.closeErrorModal();
     }
 
-    return {initiate};
+    const addEventListenersToTask = () => {
+        tasks.addEventListenersToTask();
+    };
+
+    return {initiate, addEventListenersToTask};
 })();
 
 const projects = (() => {
@@ -129,6 +133,7 @@ const tasks = (() => {
 
     const changeStatusEventListener = (div) => {
         div.addEventListener('click', e => {
+            console.log('hello');
             // code here
         });
     };
@@ -185,7 +190,11 @@ const tasks = (() => {
         const addTaskForm = document.getElementById('addTaskForm');
         addTaskForm.addEventListener('submit', e => {
             e.preventDefault();
-            // code here
+            logic.submitAddTask();
+            dom.submitAddTask();
+            if (logic.isNewTaskInSelectedProject()) {
+                addEventListenersToTask();
+            };
         });
     };
 
@@ -211,7 +220,7 @@ const tasks = (() => {
         });
     };
     
-    const addEventListenersToTask = (task) => {
+    const addEventListenersToTask = () => {
         // test if all of these work at some point (writing this in advance)
         const taskStatusDivs = document.querySelectorAll('.taskStatus');
         const newTaskStatusDiv = taskStatusDivs[taskStatusDivs.length - 1];
@@ -231,7 +240,7 @@ const tasks = (() => {
     };
 
     return {changeStatus, selectTask, editTask, deleteTask, addTask, closeSelectTask, 
-        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask};
+        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask, addEventListenersToTask};
 })();
 
 const errorModal = (() => {

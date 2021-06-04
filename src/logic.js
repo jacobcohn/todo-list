@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid'
+
 const logic = (() => {
     const initiate = () => {
         projects.checkArray();
@@ -14,9 +16,18 @@ const logic = (() => {
 
     const selectProject = (projectName) => {
         projects.setSelectedProject(projectName);
-    }
+    };
 
-    return {initiate, submitNewProject, deleteProject, selectProject};
+    const submitAddTask = () => {
+        tasks.addTaskToLocalStorage(tasks.createNewTaskFromAddTaskForm());
+    };
+
+    const isNewTaskInSelectedProject = () => {
+        return questions.isNewTaskInSelectedProject();
+    };
+
+    return {initiate, submitNewProject, deleteProject, selectProject, submitAddTask, 
+        isNewTaskInSelectedProject};
 })();
 
 const projects = (() => {
@@ -72,7 +83,53 @@ const tasks = (() => {
         localStorage.setItem('tasks', JSON.stringify(tasksArray));
     };
 
-    return {checkArray};
+    const createNewTaskFromAddTaskForm = () => {
+        const id = uuidv4();
+        const name = document.getElementById('addTaskNameInput').value;
+        const notes = document.getElementById('addTaskNotesTextArea').value;
+        const dueDate = document.getElementById('addTaskDueDateInput').value
+        const priority = document.getElementById('addTaskPrioritySelect').value;
+        const project = document.getElementById('addTaskProjectSelect').value;
+        const status = 'incomplete';
+        const tasks = [];
+        
+        return {id, name, notes, dueDate, priority, project, status, tasks}
+    };
+
+    const addTaskToLocalStorage = (taskObj) => {
+        console.log(taskObj);
+        addTaskToTasksArray(taskObj);
+        addTaskToProjects(taskObj);
+    }
+
+    const addTaskToTasksArray = (taskObj) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        tasksArray.push(taskObj);
+        localStorage.setItem('tasks', JSON.stringify(tasksArray));
+    };
+
+    const addTaskToProjects = (taskObj) => {
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        const projectNamesArray = projectsArray.map(projectObject => projectObject.name);
+        const index = projectNamesArray.indexOf(taskObj.project);
+
+        projectsArray[0].tasks.push(taskObj.id);
+        projectsArray[index].tasks.push(taskObj.id);
+
+        localStorage.setItem('projects', JSON.stringify(projectsArray));
+    };
+
+    return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage};
+})();
+
+const questions = (() => {
+    const isNewTaskInSelectedProject = () => {
+        const selectedProject = sessionStorage.getItem('selectedProject');
+        const newTaskObj = JSON.parse(localStorage.getItem('tasks')).pop();
+        return (selectedProject == newTaskObj.project || selectedProject == 'Home');
+    };
+
+    return {isNewTaskInSelectedProject};
 })();
 
 export {logic}
