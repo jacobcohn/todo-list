@@ -30,8 +30,12 @@ const logic = (() => {
         tasks.changeStatus(taskId);
     };
 
+    const deleteTask = (taskId) => {
+        tasks.deleteTaskFromLocalStorage(taskId);
+    };
+
     return {initiate, submitNewProject, deleteProject, selectProject, submitAddTask, 
-        isNewTaskInSelectedProject, changeStatus};
+        isNewTaskInSelectedProject, changeStatus, deleteTask};
 })();
 
 const projects = (() => {
@@ -134,7 +138,48 @@ const tasks = (() => {
         localStorage.setItem('tasks', JSON.stringify(tasksArray));
     };
 
-    return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage, changeStatus};
+    const deleteTaskFromLocalStorage = (taskId) => {
+        deleteTaskFromProjects(taskId);
+        deleteTaskFromTasksArray(taskId);
+    };
+
+    const findProject = (taskId) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        for (let i = 0; i < tasksArray.length; i++) {
+            if (tasksArray[i].id == taskId) return tasksArray[i].project;
+        };
+    };
+
+    const findIndexOfTaskInTasksArray = (taskId) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        for (let i = 0; i < tasksArray.length; i++) {
+            if (tasksArray[i].id == taskId) return i;
+        };
+    };
+
+    const deleteTaskFromProjects = (taskId) => {
+        const project = findProject(taskId);
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        const projectNamesArray = projectsArray.map(project => project.name);
+        const indexOfProject = projectNamesArray.indexOf(project);
+        const indexOfTaskInProject = projectsArray[indexOfProject].tasks.indexOf(taskId);
+        const indexOfTaskInTasksArray = findIndexOfTaskInTasksArray(taskId);
+
+        projectsArray[0].tasks.splice(indexOfTaskInTasksArray, 1);
+        projectsArray[indexOfProject].tasks.splice(indexOfTaskInProject, 1);
+
+        localStorage.setItem('projects', JSON.stringify(projectsArray));
+    };
+
+    const deleteTaskFromTasksArray = (taskId) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        const indexOfTaskInTasksArray = findIndexOfTaskInTasksArray(taskId);
+        tasksArray.splice(indexOfTaskInTasksArray, 1);
+        localStorage.setItem('tasks', JSON.stringify(tasksArray));
+    };
+
+    return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage, changeStatus, 
+        deleteTaskFromLocalStorage};
 })();
 
 const questions = (() => {

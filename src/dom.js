@@ -68,9 +68,13 @@ const dom = (() => {
         tasks.switchTaskModalOnOff(displayTaskModalBackground);
     };
 
+    const deleteTask = (taskId) => {
+        tasks.removeTaskFromDisplay(taskId);
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
         closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
-        submitAddTask, changeStatus, selectTask, closeSelectTask};
+        submitAddTask, changeStatus, selectTask, closeSelectTask, deleteTask};
 })();
 
 const projects = (() => {
@@ -301,9 +305,14 @@ const tasks = (() => {
         taskProject.textContent = taskObj.project;
     };
 
+    const removeTaskFromDisplay = (taskId) => {
+        const taskDiv = document.getElementById(taskId + ' taskDiv');
+        taskDiv.remove();
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses, 
-        changeTextContentForDisplayTaskModal};
+        changeTextContentForDisplayTaskModal, removeTaskFromDisplay};
 })();
 
 const errorModal = (() => {

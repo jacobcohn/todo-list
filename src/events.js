@@ -170,8 +170,9 @@ const tasks = (() => {
 
     const deleteTaskEventListener = (icon) => {
         icon.addEventListener('click', e => {
-            // code here
-            console.log('deleteTask');
+            const taskId = e.target.id.replace(' taskDeleteIcon', '');
+            logic.deleteTask(taskId);
+            dom.deleteTask(taskId);
         });
     };
 
