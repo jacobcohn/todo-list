@@ -91,20 +91,16 @@
                 <input type='text' id='editTaskNameInput' name='editTaskName' class='taskFormInputElement' required>
                 <label id='editTaskNotesLabel' for='editTaskNotes'>Notes:</label>
                 <textarea type='textarea' id='editTaskNotesTextArea' name='editTaskNotes' class='taskFormInputElement taskFormNotesTextArea' maxlength="100"></textarea>
-                <label id='editTaskPriorityLabel' for='editTaskPriority'>Priority:</label>
-                <select id='editTaskPrioritySelect' name='editTaskPriority' class='taskFormInputElement'>
-                    <option value='low'>Low</option>
-                    <option value='medium'>Medium</option>
-                    <option value='high'>High</option>
-                </select>
                 <label id='editTaskDueDateLabel' for='editTaskDueDate'>Due Date:</label>
                 <input type='date' id='editTaskDueDateInput' name='editTaskDueDate' class='taskFormInputElement' min="2020-01-01" max='2030-01-01' required>
-                <label id='editTaskProjectLabel' for='editTaskProject'>Project:</label>
-                <select id='editTaskProjectSelect' name='editTaskProject' class='taskFormInputElement'>
-                    <option value='Project #1'>Project #1</option>
-                    <option value='Project #2'>Project #2</option>
-                    <option value='Project #3'>Project #3</option>
+                <label id='editTaskPriorityLabel' for='editTaskPriority'>Priority:</label>
+                <select id='editTaskPrioritySelect' name='editTaskPriority' class='taskFormInputElement'>
+                    <option class='editTaskPrioritySelectOption' value='low'>Low</option>
+                    <option class='editTaskPrioritySelectOption' value='medium'>Medium</option>
+                    <option class='editTaskPrioritySelectOption' value='high'>High</option>
                 </select>
+                <label id='editTaskProjectLabel' for='editTaskProject'>Project:</label>
+                <select id='editTaskProjectSelect' name='editTaskProject' class='taskFormInputElement'></select>
                 <div id='editTaskFormBtns' class='taskFormBtnsDiv'>
                     <button type='submit' id='submitEditTaskBtn' class='taskFormBtn submitTaskFormBtn'>Edit</button>
                     <button type='button' id='cancelEditTaskBtn' class='taskFormBtn cancelTaskFormBtn'>Cancel</button>
