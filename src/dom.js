@@ -53,9 +53,13 @@ const dom = (() => {
         tasks.displayNewTask();
     };
 
+    const changeStatus = (taskId) => {
+        tasks.changeStatusClasses(taskId);
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
         closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
-        submitAddTask};
+        submitAddTask, changeStatus};
 })();
 
 const projects = (() => {
@@ -218,6 +222,8 @@ const tasks = (() => {
         taskDeleteIcon.classList.toggle('fa-trash');
         taskDeleteIcon.classList.toggle('taskDeleteIcon');
         taskDiv.appendChild(taskDeleteIcon);
+
+        if (taskObj.status == 'complete') changeStatusClasses(taskObj.id);
     };
 
     const displayNewTask = () => {
@@ -250,8 +256,19 @@ const tasks = (() => {
         modalBackground.classList.toggle('displayFlex');
     };
 
+    const changeStatusClasses = (taskId) => {
+        const taskDiv = document.getElementById(taskId + ' taskDiv');
+        taskDiv.classList.toggle('taskDivCompleted');
+        const taskStatusIcon = document.getElementById(taskId + ' taskStatusIcon');
+        taskStatusIcon.classList.toggle('displayNone');
+        const taskName = document.getElementById(taskId + ' taskName');
+        taskName.classList.toggle('lineThrough');
+        const taskDueDate = document.getElementById(taskId + ' taskDueDate');
+        taskDueDate.classList.toggle('lineThrough');
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
-        resetProjectOptionsToSelect, switchTaskModalOnOff};
+        resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses};
 })();
 
 const errorModal = (() => {

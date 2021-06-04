@@ -6,7 +6,8 @@ import {errors} from './errors'
 things that I need to do:
 - selectedProject = addTaskForm Projects Placeholder
 - todays date = addTaskForm DueDate Placeholder + min/max close by
-- fix dueDate format
+- fix dueDate format (and CSS if necessary)
+- fix events file (call one function per module to initiate)
 */
 
 
@@ -43,11 +44,7 @@ const events = (() => {
         errorModal.closeErrorModal();
     }
 
-    const addEventListenersToTask = () => {
-        tasks.addEventListenersToTask();
-    };
-
-    return {initiate, addEventListenersToTask};
+    return {initiate};
 })();
 
 const projects = (() => {
@@ -136,8 +133,9 @@ const tasks = (() => {
 
     const changeStatusEventListener = (div) => {
         div.addEventListener('click', e => {
-            console.log('hello');
-            // code here
+            const taskId = e.target.id.replace(' taskStatus', '').replace('Icon', '');
+            logic.changeStatus(taskId);
+            dom.changeStatus(taskId);
         });
     };
 

@@ -26,8 +26,12 @@ const logic = (() => {
         return questions.isNewTaskInSelectedProject();
     };
 
+    const changeStatus = (taskId) => {
+        tasks.changeStatus(taskId);
+    };
+
     return {initiate, submitNewProject, deleteProject, selectProject, submitAddTask, 
-        isNewTaskInSelectedProject};
+        isNewTaskInSelectedProject, changeStatus};
 })();
 
 const projects = (() => {
@@ -91,9 +95,8 @@ const tasks = (() => {
         const priority = document.getElementById('addTaskPrioritySelect').value;
         const project = document.getElementById('addTaskProjectSelect').value;
         const status = 'incomplete';
-        const tasks = [];
         
-        return {id, name, notes, dueDate, priority, project, status, tasks}
+        return {id, name, notes, dueDate, priority, project, status}
     };
 
     const addTaskToLocalStorage = (taskObj) => {
@@ -119,7 +122,20 @@ const tasks = (() => {
         localStorage.setItem('projects', JSON.stringify(projectsArray));
     };
 
-    return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage};
+    const changeStatus = (taskId) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks'));
+        const index = tasksArray.findIndex(task => task.id == taskId);
+        const taskObj = tasksArray[index];
+        if (taskObj.status == 'incomplete') {
+            taskObj.status = 'complete';
+        } else {
+            taskObj.status = 'incomplete';
+        };
+        tasksArray[index] = taskObj;
+        localStorage.setItem('tasks', JSON.stringify(tasksArray));
+    };
+
+    return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage, changeStatus};
 })();
 
 const questions = (() => {
