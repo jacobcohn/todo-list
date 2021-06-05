@@ -38,6 +38,7 @@ const dom = (() => {
     const addTask = () => {
         const addTaskProjectSelect = document.getElementById('addTaskProjectSelect');
         tasks.resetProjectOptionsToSelect(addTaskProjectSelect);
+        tasks.selectedProjectIsPreselected(addTaskProjectSelect);
         const addTaskModalBackground = document.getElementById('addTaskModalBackground');
         tasks.switchTaskModalOnOff(addTaskModalBackground);
     };
@@ -286,6 +287,16 @@ const tasks = (() => {
         });
     };
 
+    const selectedProjectIsPreselected = () => {
+        const selectedProject = sessionStorage.getItem('selectedProject');
+        if (selectedProject !== 'Home') {
+            const taskProject = document.getElementById('addTaskProjectSelect');
+            const taskProjectOptions = Array.from(taskProject.querySelectorAll('option'));
+            const projectSelectedOptionIndex = taskProjectOptions.findIndex(option => option.value == selectedProject);
+            taskProject.selectedIndex = projectSelectedOptionIndex;
+        };
+    };
+
     const switchTaskModalOnOff = (modalBackground) => {
         modalBackground.classList.toggle('displayNone');
         modalBackground.classList.toggle('displayFlex');
@@ -379,9 +390,9 @@ const tasks = (() => {
     };
 
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
-        resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses, 
-        changeTextContentForDisplayTaskModal, removeTaskFromDisplay, changeValueForEditTaskModal, 
-        editDisplayOfEditedTask};
+        resetProjectOptionsToSelect, selectedProjectIsPreselected, switchTaskModalOnOff, 
+        changeStatusClasses, changeTextContentForDisplayTaskModal, removeTaskFromDisplay, 
+        changeValueForEditTaskModal, editDisplayOfEditedTask};
 })();
 
 const errorModal = (() => {

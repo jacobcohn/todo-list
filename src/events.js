@@ -4,50 +4,32 @@ import {errors} from './errors'
 
 /* 
 things that I need to do:
-- selectedProject = addTaskForm Projects Placeholder
 - todays date = addTaskForm DueDate Placeholder + min/max close by
 - fix dueDate format (and CSS if necessary)
-- fix events file (call one function per module to initiate)
 */
 
 
 const events = (() => {
     const initiate = () => {
-        initialProjectEvents();
-        initialTaskEvents();
-        initialErrorModalEvents();
-        projects.selectProjectFunction('Home');
+        tasks.initiate();
+        projects.initiate();
+        errorModal.initiate();
     };
-
-    const initialProjectEvents = () => {
-        projects.selectProject();
-        projects.deleteProject();
-        projects.addProject();
-        projects.cancelAddProject();
-        projects.submitNewProject();
-    };
-
-    const initialTaskEvents = () => {
-        tasks.changeStatus();
-        tasks.selectTask();
-        tasks.editTask();
-        tasks.deleteTask();
-        tasks.addTask();
-        tasks.closeSelectTask();
-        tasks.submitAddTask();
-        tasks.cancelAddTask();
-        tasks.submitEditTask();
-        tasks.cancelEditTask();
-    };
-
-    const initialErrorModalEvents = () => {
-        errorModal.closeErrorModal();
-    }
 
     return {initiate};
 })();
 
 const projects = (() => {
+    const initiate = () => {
+        selectProject();
+        deleteProject();
+        addProject();
+        cancelAddProject();
+        submitNewProject();
+
+        selectProjectFunction('Home');
+    };
+
     const selectProject = () => {
         const allProjects = Array.from(document.querySelectorAll('.projectBtn'));
         allProjects.forEach(element => {
@@ -121,11 +103,31 @@ const projects = (() => {
         deleteProjectEventListener(newProjectDeleteIcon);
     };
 
-    return {selectProject, selectProjectFunction, deleteProject, addProject, cancelAddProject, 
-        submitNewProject};
+    return {initiate};
 })();
 
 const tasks = (() => {
+    const initiate = () => {
+        addEventListenersToAllTaskDivs();
+        addEventListenersOnce();
+    }
+
+    const addEventListenersToAllTaskDivs = () => {
+        changeStatus();
+        selectTask();
+        editTask();
+        deleteTask();
+    };
+
+    const addEventListenersOnce = () => {
+        addTask();
+        closeSelectTask();
+        submitAddTask();
+        cancelAddTask();
+        submitEditTask();
+        cancelEditTask();
+    };
+
     const changeStatus = () => {
         const taskStatusDivs = document.querySelectorAll('.taskStatus');
         taskStatusDivs.forEach(div => changeStatusEventListener(div));
@@ -245,18 +247,14 @@ const tasks = (() => {
         deleteTaskEventListener(newTaskDeleteIcon);
     };
 
-    const addEventListenersToAllTaskDivs = () => {
-        changeStatus();
-        selectTask();
-        editTask();
-        deleteTask();
-    };
-
-    return {changeStatus, selectTask, editTask, deleteTask, addTask, closeSelectTask, 
-        submitAddTask, cancelAddTask, submitEditTask, cancelEditTask, addEventListenersToAllTaskDivs};
+    return {initiate, addEventListenersToAllTaskDivs};
 })();
 
 const errorModal = (() => {
+    const initiate = () => {
+        closeErrorModal();
+    };
+
     const errorModalBtn = document.getElementById('errorModalBtn');
 
     const closeErrorModal = () => {
@@ -265,7 +263,7 @@ const errorModal = (() => {
         });
     };
 
-    return {closeErrorModal};
+    return {initiate};
 })();
 
 export {events}
