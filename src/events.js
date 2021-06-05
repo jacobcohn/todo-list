@@ -2,10 +2,6 @@ import {logic} from './logic'
 import {dom} from './dom'
 import {errors} from './errors'
 
-/* 
-things that I need to do:
-- todays date = addTaskForm DueDate Placeholder + min/max close by
-*/
 
 
 const events = (() => {

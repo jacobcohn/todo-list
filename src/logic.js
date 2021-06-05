@@ -12,6 +12,7 @@ const logic = (() => {
 
     const deleteProject = (projectName) => {
         projects.removeProjectFromArray(projectName);
+        tasks.removeTasksWithProject(projectName);
     };
 
     const selectProject = (projectName) => {
@@ -236,9 +237,14 @@ const tasks = (() => {
         localStorage.setItem('projects', JSON.stringify(projectsArray));
     };
 
+    const removeTasksWithProject = (projectName) => {
+        const tasksArray = JSON.parse(localStorage.getItem('tasks')).filter(task => task.project !== projectName);
+        localStorage.setItem('tasks', JSON.stringify(tasksArray));
+    };
+
     return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage, changeStatus, 
         taskIdToSessionStorage, deleteTaskFromLocalStorage, deleteTaskFromProject, editTaskObject, 
-        addTaskToProject};
+        addTaskToProject, removeTasksWithProject};
 })();
 
 const questions = (() => {

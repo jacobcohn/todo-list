@@ -29,6 +29,7 @@ const dom = (() => {
 
     const deleteProject = (projectName) => {
         projects.removeProjectFromDisplay(projectName);
+        tasks.resetHomeTasksDisplay();
     };
 
     const selectProject = (projectName) => {
@@ -409,10 +410,18 @@ const tasks = (() => {
         };
     };
 
+    const resetHomeTasksDisplay = () => {
+        const selectedProject = sessionStorage.getItem('selectedProject');
+        if (selectedProject == 'Home') {
+            tasks.deleteAllTasksInDisplay();
+            tasks.displayAllTasksInProject('Home');
+        };
+    }
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, selectedProjectIsPreselected, switchTaskModalOnOff, 
         changeStatusClasses, changeTextContentForDisplayTaskModal, removeTaskFromDisplay, 
-        changeValueForEditTaskModal, editDisplayOfEditedTask, fixDateInput};
+        changeValueForEditTaskModal, editDisplayOfEditedTask, fixDateInput, resetHomeTasksDisplay};
 })();
 
 const errorModal = (() => {
