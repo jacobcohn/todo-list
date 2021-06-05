@@ -240,6 +240,10 @@ const tasks = (() => {
     const removeTasksWithProject = (projectName) => {
         const tasksArray = JSON.parse(localStorage.getItem('tasks')).filter(task => task.project !== projectName);
         localStorage.setItem('tasks', JSON.stringify(tasksArray));
+
+        const projectsArray = JSON.parse(localStorage.getItem('projects'));
+        projectsArray[0].tasks = tasksArray.map(task => task.id);
+        localStorage.setItem('projects', JSON.stringify(projectsArray));
     };
 
     return {checkArray, createNewTaskFromAddTaskForm, addTaskToLocalStorage, changeStatus, 

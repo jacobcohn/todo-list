@@ -3,7 +3,6 @@ import {dom} from './dom'
 import {errors} from './errors'
 
 
-
 const events = (() => {
     const initiate = () => {
         tasks.initiate();

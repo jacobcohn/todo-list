@@ -42,6 +42,7 @@ const dom = (() => {
         const addTaskProjectSelect = document.getElementById('addTaskProjectSelect');
         tasks.resetProjectOptionsToSelect(addTaskProjectSelect);
         tasks.selectedProjectIsPreselected(addTaskProjectSelect);
+        tasks.resetAddTaskInputs();
         tasks.fixDateInput('add');
         const addTaskModalBackground = document.getElementById('addTaskModalBackground');
         tasks.switchTaskModalOnOff(addTaskModalBackground);
@@ -391,7 +392,14 @@ const tasks = (() => {
         taskName.textContent = taskObj.name;
 
         const taskDueDate = document.getElementById(taskObj.id + ' taskDueDate');
-        taskDueDate.textContent = taskObj.dueDate;
+        taskDueDate.textContent = format(parseISO(taskObj.dueDate), 'MM/dd/yyyy');
+    };
+
+    const resetAddTaskInputs = () => {
+        const nameInput = document.getElementById('addTaskNameInput');
+        nameInput.value = '';
+        const notesInput = document.getElementById('addTaskNotesTextArea');
+        notesInput.value = '';
     };
 
     const fixDateInput = (modal) => {
@@ -421,7 +429,8 @@ const tasks = (() => {
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, selectedProjectIsPreselected, switchTaskModalOnOff, 
         changeStatusClasses, changeTextContentForDisplayTaskModal, removeTaskFromDisplay, 
-        changeValueForEditTaskModal, editDisplayOfEditedTask, fixDateInput, resetHomeTasksDisplay};
+        changeValueForEditTaskModal, editDisplayOfEditedTask, resetAddTaskInputs, fixDateInput, 
+        resetHomeTasksDisplay};
 })();
 
 const errorModal = (() => {
