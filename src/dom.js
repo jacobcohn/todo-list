@@ -85,10 +85,16 @@ const dom = (() => {
         tasks.switchTaskModalOnOff(editTaskModalBackground);
     };
 
+    const submitEditTask = () => {
+        const editTaskModalBackground = document.getElementById('editTaskModalBackground');
+        tasks.switchTaskModalOnOff(editTaskModalBackground);
+        tasks.editDisplayOfEditedTask();
+    };
+
     return {initiate, addProject, cancelAddProject, submitNewProject, displayError, 
         closeErrorModal, deleteProject, selectProject, addTask, cancelAddTask, 
         submitAddTask, changeStatus, selectTask, closeSelectTask, deleteTask, editTask, 
-        cancelEditTask};
+        cancelEditTask, submitEditTask};
 })();
 
 const projects = (() => {
@@ -347,9 +353,35 @@ const tasks = (() => {
         taskProject.selectedIndex = projectSelectedOptionIndex;
     };
 
+    const editDisplayOfEditedTask = () => {
+        const taskId = sessionStorage.getItem('selectedTask');
+        const taskObj = findTaskObj(taskId);
+        const selectedProject = sessionStorage.getItem('selectedProject');
+
+        if (taskObj.project !== selectedProject && selectedProject !== 'Home') {
+            removeTaskFromDisplay(taskObj.id);
+            return;
+        };
+
+        if (taskObj.status == 'complete') changeStatusClasses(taskObj.id);
+
+        const taskPriority = document.getElementById(taskObj.id + ' taskPriority');
+        if (taskPriority.classList.contains('low')) taskPriority.classList.toggle('low');
+        if (taskPriority.classList.contains('medium')) taskPriority.classList.toggle('medium');
+        if (taskPriority.classList.contains('high')) taskPriority.classList.toggle('high');
+        taskPriority.classList.toggle(taskObj.priority);
+
+        const taskName = document.getElementById(taskObj.id + ' taskName');
+        taskName.textContent = taskObj.name;
+
+        const taskDueDate = document.getElementById(taskObj.id + ' taskDueDate');
+        taskDueDate.textContent = taskObj.dueDate;
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, switchTaskModalOnOff, changeStatusClasses, 
-        changeTextContentForDisplayTaskModal, removeTaskFromDisplay, changeValueForEditTaskModal};
+        changeTextContentForDisplayTaskModal, removeTaskFromDisplay, changeValueForEditTaskModal, 
+        editDisplayOfEditedTask};
 })();
 
 const errorModal = (() => {

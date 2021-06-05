@@ -159,6 +159,7 @@ const tasks = (() => {
     const editTaskEventListener = (icon) => {
         icon.addEventListener('click', e => {
             const taskId = e.target.id.replace(' taskEditIcon', '');
+            logic.editTask(taskId);
             dom.editTask(taskId);
         });
     };
@@ -214,7 +215,8 @@ const tasks = (() => {
         const editTaskForm = document.getElementById('editTaskForm');
         editTaskForm.addEventListener('submit', e => {
             e.preventDefault();
-            // code here
+            logic.submitEditTask();
+            dom.submitEditTask();
         });
     };
 
