@@ -106,7 +106,7 @@ const tasks = (() => {
         const id = uuidv4();
         const name = document.getElementById('addTaskNameInput').value;
         const notes = document.getElementById('addTaskNotesTextArea').value;
-        const dueDate = document.getElementById('addTaskDueDateInput').value
+        const dueDate = document.getElementById('addTaskDueDateInput').value;
         const priority = document.getElementById('addTaskPrioritySelect').value;
         const project = document.getElementById('addTaskProjectSelect').value;
         const status = 'incomplete';

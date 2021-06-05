@@ -1,3 +1,5 @@
+import { format, parseISO, startOfToday, addYears } from 'date-fns'
+
 const dom = (() => {
     const initiate = () => {
         projects.displayAllProjects();
@@ -39,6 +41,7 @@ const dom = (() => {
         const addTaskProjectSelect = document.getElementById('addTaskProjectSelect');
         tasks.resetProjectOptionsToSelect(addTaskProjectSelect);
         tasks.selectedProjectIsPreselected(addTaskProjectSelect);
+        tasks.fixDateInput('add');
         const addTaskModalBackground = document.getElementById('addTaskModalBackground');
         tasks.switchTaskModalOnOff(addTaskModalBackground);
     };
@@ -77,6 +80,7 @@ const dom = (() => {
         const editTaskProjectSelect = document.getElementById('editTaskProjectSelect');
         tasks.resetProjectOptionsToSelect(editTaskProjectSelect);
         tasks.changeValueForEditTaskModal(taskId);
+        tasks.fixDateInput('edit');
         const editTaskModalBackground = document.getElementById('editTaskModalBackground');
         tasks.switchTaskModalOnOff(editTaskModalBackground);
     };
@@ -240,7 +244,7 @@ const tasks = (() => {
         const taskDueDate = document.createElement('div');
         taskDueDate.id = taskObj.id + ' taskDueDate';
         taskDueDate.classList.toggle('taskDueDate');
-        taskDueDate.textContent = taskObj.dueDate;
+        taskDueDate.textContent = format(parseISO(taskObj.dueDate), 'MM/dd/yyyy');
         taskDiv.appendChild(taskDueDate);
 
         // create taskEditIcon
@@ -389,10 +393,26 @@ const tasks = (() => {
         taskDueDate.textContent = taskObj.dueDate;
     };
 
+    const fixDateInput = (modal) => {
+        const fixMinAndMax = (dateInput) => {
+            dateInput.min = format(addYears(startOfToday(), -1), 'yyyy-MM-dd');
+            dateInput.max = format(addYears(startOfToday(), 2), 'yyyy-MM-dd');
+        };
+
+        if (modal == 'add') {
+            const dateInput = document.getElementById('addTaskDueDateInput');
+            dateInput.value = format(startOfToday(), 'yyyy-MM-dd');
+            fixMinAndMax(dateInput);
+        } else if (modal == 'edit') {
+            const dateInput = document.getElementById('editTaskDueDateInput');
+            fixMinAndMax(dateInput);
+        };
+    };
+
     return {changeTitle, deleteAllTasksInDisplay, displayNewTask, displayAllTasksInProject, 
         resetProjectOptionsToSelect, selectedProjectIsPreselected, switchTaskModalOnOff, 
         changeStatusClasses, changeTextContentForDisplayTaskModal, removeTaskFromDisplay, 
-        changeValueForEditTaskModal, editDisplayOfEditedTask};
+        changeValueForEditTaskModal, editDisplayOfEditedTask, fixDateInput};
 })();
 
 const errorModal = (() => {

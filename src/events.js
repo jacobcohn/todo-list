@@ -5,7 +5,6 @@ import {errors} from './errors'
 /* 
 things that I need to do:
 - todays date = addTaskForm DueDate Placeholder + min/max close by
-- fix dueDate format (and CSS if necessary)
 */
 
 
