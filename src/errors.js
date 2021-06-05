@@ -3,11 +3,11 @@ import {dom} from './dom'
 const errors = (() => {
     const isSubmitProjectError = () => {
         return projects.checkSubmitProjectInput();
-    }
+    };
 
     const isAddTaskError = () => {
         return projects.moreThanOneProject();
-    }
+    };
 
     return {isSubmitProjectError, isAddTaskError};
 })();

@@ -21,11 +21,11 @@ const dom = (() => {
 
     const displayError = (message) => {
         errorModal.showErrorMessage(message);
-    }
+    };
 
     const closeErrorModal = () => {
         errorModal.switchErrorModalOnOrOff();
-    }
+    };
 
     const deleteProject = (projectName) => {
         projects.removeProjectFromDisplay(projectName);

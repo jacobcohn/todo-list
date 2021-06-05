@@ -33,7 +33,7 @@ const logic = (() => {
 
     const editTask = (taskId) => {
         tasks.taskIdToSessionStorage(taskId);
-    }
+    };
 
     const deleteTask = (taskId) => {
         tasks.deleteTaskFromLocalStorage(taskId);
@@ -73,7 +73,7 @@ const projects = (() => {
 
     const createNewProject = (name) => {
         const tasks = [];
-        return {name, tasks}
+        return {name, tasks};
     };
 
     const addProjectToArray = (newProject) => {
@@ -118,7 +118,7 @@ const tasks = (() => {
     const addTaskToLocalStorage = (taskObj) => {
         addTaskToTasksArray(taskObj);
         addTaskToProjects(taskObj);
-    }
+    };
 
     const addTaskToTasksArray = (taskObj) => {
         const tasksArray = JSON.parse(localStorage.getItem('tasks'));
