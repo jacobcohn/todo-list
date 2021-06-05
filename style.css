@@ -223,7 +223,7 @@ button {
     border: 1px solid;
     border-radius: 0px 5px 5px 0px;
     display: grid;
-    grid-template-columns: 10px 30px 1fr 100px 30px 30px;
+    grid-template-columns: 10px 30px 1fr 120px 30px 30px;
     align-items: center;
 }
 
